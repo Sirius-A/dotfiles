@@ -8,9 +8,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sensible'
-" PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run install script
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
@@ -37,8 +35,17 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
-"Ctrl+T fuzzy finder 
-set rtp+=~/.fzf
+" CtrlP
+" https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+if executable('ag')
+	" Use Ag over Grep
+	set grepprg=ag\ --nogroup\ --nocolor
+  "use ag in CtrlP for listing files. Lightning fast and respects.gitignore
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Theme settings
 syntax on
@@ -57,26 +64,3 @@ if has('unnamedplus')
 else
   set clipboard=unnamed
 endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" )
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
-nnoremap <c-p> :FZF<cr>
