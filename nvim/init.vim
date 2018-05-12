@@ -35,6 +35,10 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
+"toggle spellcheck
+nn <F7> :setlocal spell! spell?<CR>
+imap <F7> <C-o>::setlocal spell! spell?<CR>
+
 " CtrlP
 " https://github.com/ctrlpvim/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
