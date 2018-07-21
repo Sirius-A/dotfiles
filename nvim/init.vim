@@ -7,15 +7,23 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-sensible'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'tpope/vim-sensible' " Default configuration
+Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
+
+" Deoplete - Autocompletion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 "Syntaxes & Language tools
 Plug 'pangloss/vim-javascript' 
 Plug 'leafgarland/typescript-vim'
-Plug 'quramy/tsuquyomi' " Typescript client
+
 
 " Initialize plugin system
 call plug#end()
@@ -28,6 +36,16 @@ set number
 set cursorline
 set showcmd       " display incomplete commands
 let g:loaded_python3_provider=1
+
+" Open new splits at a more logical place
+set splitbelow
+set splitright
+
+" Easier Split Navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -60,7 +78,7 @@ colorscheme hybrid_material
 
 let g:javascript_plugin_jsdoc = 1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global OSX Clipboard Handling (tmux/vim/osx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('unnamedplus')
