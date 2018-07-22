@@ -20,7 +20,7 @@ An git alias `config` is used to manage all configuration files in the `$HOME` d
 cd
 git clone --bare git@github.com:Sirius-A/dotfiles.git ~/.cfg
 
-# Initial conig alias setup
+# Initial config alias setup
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
 
