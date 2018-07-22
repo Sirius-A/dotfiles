@@ -41,6 +41,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" get out of insert mode withou hitting esc
+imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
+
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
