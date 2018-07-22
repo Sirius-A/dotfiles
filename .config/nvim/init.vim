@@ -3,15 +3,19 @@
 "   " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
+" Editor Settings
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-sensible' " Default configuration
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
+
+" Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-sensible' " Default configuration
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 
-
-"Syntaxes & Language tools
+" Syntaxes & Language tools
 Plug 'pangloss/vim-javascript' 
 Plug 'leafgarland/typescript-vim'
 
