@@ -5,7 +5,8 @@ configs
 ## Features
 - Bash aliases
 - Git aliases
-- Vim (NeoVim) config
+- Vim ([NeoVim](https://neovim.io/)) config
+- [fzf](https://github.com/junegunn/fzf) script and configs
 
 ## Usage
 
