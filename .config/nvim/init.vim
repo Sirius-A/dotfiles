@@ -10,20 +10,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sensible' " Default configuration
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 
-" Deoplete - Autocompletion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
 "Syntaxes & Language tools
 Plug 'pangloss/vim-javascript' 
 Plug 'leafgarland/typescript-vim'
-
 
 " Initialize plugin system
 call plug#end()
@@ -72,7 +62,9 @@ endif
 " Theme settings
 syntax on
 let g:enable_bold_font = 1
-let g:airline_theme = "hybrid"
+let g:airline_theme = "wombat"
+let g:airline_powerline_fonts = 1
+
 set background=dark
 colorscheme hybrid_material
 
