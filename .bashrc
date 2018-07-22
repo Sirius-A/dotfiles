@@ -120,5 +120,8 @@ fi
 #                       Custom stuff 
 #------------------------------------------------------------------ 
 
+# Execute scripts that are only relavant for this machine
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
+
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
