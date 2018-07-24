@@ -1,0 +1,16 @@
+[user]
+	name = Fabio Zuber
+[push]
+	default = matching
+[core]
+	excludesfile = /home/fabio/.gitignore_global
+[alias]
+  co = checkout
+
+# Pretty git log: https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+  lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+
+  # Interactively rebase all the commits on the current branch
+  rebase-branch = "!git rebase -i `git merge-base master HEAD`"
