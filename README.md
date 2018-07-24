@@ -8,6 +8,11 @@ configs
 - Vim ([NeoVim](https://neovim.io/)) config
 - [fzf](https://github.com/junegunn/fzf) script and configs
 
+## Requirements / tools used
+- Neovim or (Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
+- Python3 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+- Nvm https://github.com/creationix/nvm
+
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
