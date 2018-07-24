@@ -8,7 +8,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sensible' " Default configuration
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
-
+Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 " Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -17,7 +17,7 @@ Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " will clone fzf in ~/.fzf and run install script
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 
-"deoplete synchronous completion framework 
+"deoplete synchronous completion framework
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -37,7 +37,7 @@ let g:deoplete#enable_at_startup = 1
 call plug#end()
 
 "-------------------------------------------------------------------------------
-"                             Editor Settings 
+"                             Editor Settings
 "-------------------------------------------------------------------------------
 set encoding=utf-8
 set noswapfile
@@ -69,11 +69,6 @@ let g:airline_theme = "wombat"
 let g:airline_powerline_fonts = 1
 set background=dark
 colorscheme hybrid_material
-
-" Highlight trailing whitespace
-highlight RedundantSpaces ctermbg=7 guibg=#333333
-match RedundantSpaces /\s\+$/
-
 
 " Restore last position when reopening a file
 if has("autocmd")
