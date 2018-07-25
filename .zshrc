@@ -6,7 +6,15 @@ unsetopt autocd beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/fabio/.zshrc'
+
+# Make completion:
+# - Case-insensitive.
+# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
+# - Substring complete (ie. bar -> foobar).
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Colorize completions using default `ls` colors.
+zstyle ':completion:*' list-colors ''
 
 autoload -Uz compinit
 compinit
@@ -16,6 +24,9 @@ compinit
 #------------------------------------------------------------------
 #                       Custom stuff
 #------------------------------------------------------------------
+
+# Enable autocompletion of hidden files without typing a dot at the start
+setopt globdots
 
 # execute alias file if it exists
 [ -f ~/.aliases ] && . ~/.aliases
