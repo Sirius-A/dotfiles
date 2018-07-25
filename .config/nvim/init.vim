@@ -9,13 +9,15 @@ Plug 'tpope/vim-sensible' " Default configuration
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
+
 " Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " will clone fzf in ~/.fzf and run install script
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " will clone fzf in ~/.fzf and run install script
 
 "deoplete synchronous completion framework
 if has('nvim')
