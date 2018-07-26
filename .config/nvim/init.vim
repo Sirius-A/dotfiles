@@ -78,6 +78,46 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
+" show recent log entries in commit messages
+function! s:EnhanceCommitMessage()
+  " avoid line wrapping
+  let textwidth = &textwidth
+  let &textwidth = 0
+
+  " return if log entries were already added
+  normal gg0
+  if search('^# Latest commits:$')
+    return
+  endif
+
+  if !search('^# Please enter the commit message')
+    return
+  endif
+
+  normal V
+  call search('^# Changes to be committed:$')
+  normal kkd
+
+  normal O# Latest commits:
+
+  let logCommand = 'git log -n 5 --no-color --no-decorate --pretty=%s'
+  for line in split(system(logCommand), '\n')
+    execute 'normal o#  - ' . line
+  endfor
+
+  normal o#
+  normal gg0
+
+  " insert new line for empty commit messages
+  if search('^# Latest commits:$', 'n') == 2
+    normal O
+    startinsert
+  endif
+
+  let &textwidth = textwidth
+endfunction
+autocmd FileType gitcommit call <SID>EnhanceCommitMessage()
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep

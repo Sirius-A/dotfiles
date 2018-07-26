@@ -30,7 +30,7 @@ setopt autoparamslash       # tab completing directory appends a slash
 setopt correct              # command auto-correction
 setopt correctall           # argument auto-correction
 
-export EDITOR='vim'
+export EDITOR='nvim'
 #-------------------------------------------------------------------------------
 #                         Shell helper functions
 #-------------------------------------------------------------------------------
