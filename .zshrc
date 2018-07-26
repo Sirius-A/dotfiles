@@ -30,6 +30,7 @@ setopt autoparamslash       # tab completing directory appends a slash
 setopt correct              # command auto-correction
 setopt correctall           # argument auto-correction
 
+export EDITOR='vim'
 #-------------------------------------------------------------------------------
 #                         Shell helper functions
 #-------------------------------------------------------------------------------
@@ -48,15 +49,20 @@ add-zsh-hook chpwd auto-ls-after-cd
 #-------------------------------------------------------------------------------
 #                            Prompt / Powerline
 #-------------------------------------------------------------------------------
-POWERLEVEL9K_MODE='awesome-patched'
 # Setup Prompt / Powerline
 if [ -d ~/.config/zsh/powerlevel9k ]; then
+  POWERLEVEL9K_MODE='nerdfont-complete'
+  DEFAULT_USER='fabio'
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time)
   POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
   POWERLEVEL9K_STATUS_OK=false
   POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
   POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
+# truncate path /usr/share/plasma to /u/s/plasma
+  POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+  POWERLEVEL9K_SHORTEN_DELIMITER=""
+  POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
   POWERLEVEL9K_TIME_BACKGROUND="black"
   POWERLEVEL9K_TIME_FOREGROUND="249"
   POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uE12E"
