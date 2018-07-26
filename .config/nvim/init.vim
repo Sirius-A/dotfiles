@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
+Plug 'scrooloose/nerdtree' " File Browser / explorer
+Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 
@@ -63,7 +65,7 @@ set expandtab
 set splitbelow
 set splitright
 
-let g:javascript_plugin_jsdoc = 1 "From 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 
 " Theme settings
 syntax on
@@ -138,13 +140,22 @@ endif
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
+"-------------------------------NERDTree----------------------------------------
+let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature may cost much more time)
+
+"open NERDTree automatically when vim starts up and no files we specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "-------------------------------------------------------------------------------
 "                        	Syntax and Languages
 "-------------------------------------------------------------------------------
 " Set syntax highlighting for specific file types
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-
 "-------------------------------------------------------------------------------
 "                              Key Mappings
 "-------------------------------------------------------------------------------
@@ -174,12 +185,6 @@ vnoremap > >gv
 nnoremap <F7> :setlocal spell! spell?<CR>
 inoremap <F7> <C-o>::setlocal spell! spell?<CR>
 
-" CtrlP
-" https://github.com/ctrlpvim/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-
 " Delete to black hole register with X
 noremap X "_d
 nnoremap XX "_dd
@@ -187,6 +192,18 @@ nnoremap XX "_dd
 " Select last pasted text
 nmap vp `[v`]
 
+" CtrlP
+" https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
+" Open / close NERDTree
+map <C-n> :NERDTreeToggle<CR>
+" Show currently open file in NT
+map <A-n> :NERDTreeFind<CR>
+" Focus NT from anywhere
+map <A-b> :NERDTree<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global OSX Clipboard Handling (tmux/vim/osx)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
