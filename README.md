@@ -2,16 +2,10 @@
 
 configs
 
-## Features
-- Bash aliases
-- Git aliases
-- Vim ([NeoVim](https://neovim.io/)) config
-- [fzf](https://github.com/junegunn/fzf) script and configs
-
 ## Requirements / tools used
 - Neovim or (Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
 - Python3 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
-- Nvm https://github.com/creationix/nvm
+- Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH 
 
 ## Usage
 
