@@ -51,7 +51,7 @@ set number
 set cursorline
 set showcmd              " Display incomplete commands
 set hidden               " Do not close open unsaved buffers when openening a new Vim instance
-set mouse=a              " Enable mouse for resizing and stuff
+set mouse=n              " Enable mouse for resizing and stuff
 
 set ignorecase smartcase " Ignore case unless a captial letter is entered
 set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise
