@@ -10,16 +10,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 
+Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
+
 " Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " will clone fzf in ~/.fzf and run install script
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 
-"deoplete synchronous completion framework
+" Deoplete - asynchronous completion framework
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -66,11 +67,10 @@ let g:javascript_plugin_jsdoc = 1 "From 'pangloss/vim-javascript'
 
 " Theme settings
 syntax on
-let g:enable_bold_font = 1
 let g:airline_theme = "wombat"
 let g:airline_powerline_fonts = 1
 set background=dark
-colorscheme hybrid_material
+colorscheme hybrid_reverse
 
 " Restore last position when reopening a file
 if has("autocmd")
@@ -78,13 +78,13 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
-" show recent log entries in commit messages
+" Show recent log entries in commit messages
 function! s:EnhanceCommitMessage()
-  " avoid line wrapping
+  " Avoid line wrapping
   let textwidth = &textwidth
   let &textwidth = 0
 
-  " return if log entries were already added
+  " Return if log entries were already added
   normal gg0
   if search('^# Latest commits:$')
     return
@@ -108,7 +108,7 @@ function! s:EnhanceCommitMessage()
   normal o#
   normal gg0
 
-  " insert new line for empty commit messages
+  " Insert new line for empty commit messages
   if search('^# Latest commits:$', 'n') == 2
     normal O
     startinsert
@@ -158,6 +158,13 @@ nnoremap <C-H> <C-W><C-H>
 imap jj <Esc>
 imap jk <Esc>
 imap kj <Esc>
+
+" Indent with tab
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Keep lines selected after indenting them
 vnoremap < <gv
