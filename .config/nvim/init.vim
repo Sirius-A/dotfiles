@@ -79,6 +79,10 @@ let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 syntax on
 let g:airline_theme = "wombat"
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 set background=dark
 colorscheme hybrid_reverse
 
