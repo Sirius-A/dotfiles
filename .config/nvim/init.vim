@@ -189,6 +189,7 @@ nnoremap <C-H> <C-W><C-H>
 imap jj <Esc>
 imap jk <Esc>
 imap kj <Esc>
+tnoremap <Esc> <C-\><C-n> " terminal
 
 " Indent with tab
 nnoremap <Tab> >>_
