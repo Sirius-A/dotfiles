@@ -31,13 +31,18 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+let g:deoplete#enable_at_startup = 1
+
 " Syntaxes & Language tools
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim' " Syntax highlighting
-" TS autocompletion
-Plug 'mhartington/nvim-typescript'
+Plug 'mhartington/nvim-typescript' " TS autocompletion
+Plug 'elzr/vim-json'
+Plug 'sbdchd/neoformat'
 
-let g:deoplete#enable_at_startup = 1
+" Icons for AAALLL THE THING!! (should be loaded at the end)
+Plug 'ryanoasis/vim-devicons'
+
 " Initialize plugin system
 call plug#end()
 
@@ -52,6 +57,7 @@ set cursorline
 set showcmd              " Display incomplete commands
 set hidden               " Do not close open unsaved buffers when openening a new Vim instance
 set mouse=n              " Enable mouse for resizing and stuff
+set showmatch
 
 set ignorecase smartcase " Ignore case unless a captial letter is entered
 set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise

@@ -6,6 +6,7 @@ configs
 - Neovim or (Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
 - Python3 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
 - Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH 
+- A Nerd font of choice: https://github.com/ryanoasis/nerd-fonts
 
 ## Usage
 
