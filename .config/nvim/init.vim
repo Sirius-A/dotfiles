@@ -72,6 +72,7 @@ set expandtab
 set splitbelow
 set splitright
 
+let mapleader = "\<Space>"
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 
 " Theme settings
@@ -187,6 +188,9 @@ vnoremap <S-Tab> <gv
 " Keep lines selected after indenting them
 vnoremap < <gv
 vnoremap > >gv
+
+" Close current buffer
+nnoremap <leader>q :bp<cr>:bd #<cr>
 
 "Toggle spellcheck
 nnoremap <F7> :setlocal spell! spell?<CR>
