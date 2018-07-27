@@ -4,6 +4,9 @@ if [ -x /usr/bin/dircolors ]; then
   alias ls='ls --color=auto'
 fi
 
+# ensure correct behavior when sudo-ing an alias
+alias sudo='sudo '
+
 # Some ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -16,9 +19,19 @@ alias vi='nvim'
 # Create subdirectories automatically
 alias mkdir="mkdir -pv"
 
+alias ag='ag --smart-case --hidden'
+
 # Git alias to manage the bare git repo containing the dotfiles.
 # See https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+
+# Go to project root
+function up {
+  while [ ! -d .git ] && [ "$PWD" != "/" ]; do
+    cd ..
+  done
+}
 
 # Extract any kind of archive with one command
 # From https://github.com/xvoland/Extract

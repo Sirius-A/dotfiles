@@ -76,7 +76,7 @@ fi
 #                      Setup and load external tools
 #-------------------------------------------------------------------------------
 # execute alias file if it exists
-[ -f ~/.aliases ] && . ~/.aliases
+[ -f ~/.aliases.sh ] && . ~/.aliases.sh
 
 # Execute scripts that are only relavant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
