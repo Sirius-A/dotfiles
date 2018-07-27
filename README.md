@@ -1,19 +1,20 @@
 # Dotfiles
 
-Config files
+> *Guess I'm joining the club as well* ¯\\\_(ツ)_/¯
 
 ## Requirements / Tools Used
-- Neovim or (Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
-- Python3 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+- Neovim (or Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
+  - Plugin manager:  vim-plug https://github.com/junegunn/vim-plug#installation
+  - Python3 support https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
 - Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH 
 - A nerd font of choice: https://github.com/ryanoasis/nerd-fonts
 
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
-to manage all config files. No symlinks or copying of files required. Another benefit of a bare repo is that it does not create a `.git` folder and therfore does not interfere with any other git projects in the home directory.
+to manage all config files. No symlinks or copying of files required. Another benefit of a bare repo is that it does not create a `.git` folder and therfore does not interfere with any other git projects in the home directory. More info can be found in this [Atlassian blog post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
-A Git alias `config` is used to manage all configuration files in the `$HOME` directory. By default all, which were not expicitly added are not shown in the `config status`.
+A Git alias (`config`) is used to manage all configuration files from the `$HOME` directory. By default all files which were not expicitly added are not shown in the `config status`.
 
 ### Install / Setup
 
