@@ -1,9 +1,8 @@
-# dotfiles
+# Dotfiles
 
-Config files 
+Config files
 
-
-## Requirements / tools used
+## Requirements / Tools Used
 - Neovim or (Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
 - Python3 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
 - Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH 
@@ -30,7 +29,7 @@ config config --local status.showUntrackedFiles no
 config checkout   
 ```
 
-### Update / add configs
+### Update / Add Configs
 
 Updates are done through the `config` alias. (Just like any git project)
 
@@ -40,6 +39,6 @@ config commit -m "update"
 config push
 ```
 
-## Additional configs
+## Additional Configs
 
 * VSCode settings and extensions are managed in a [separate gist](https://gist.github.com/Sirius-A/302a99c5840e6b462c2bad27ee1880d3) using the [Settings Sync Extension](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). 
