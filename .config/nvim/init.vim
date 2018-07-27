@@ -153,7 +153,8 @@ endif
 set complete+=kspell
 
 "-------------------------------NERDTree----------------------------------------
-let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature may cost much more time)
+let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
+let NERDTreeQuitOnOpen = 1
 
 "open NERDTree automatically when vim starts up and no files we specified
 autocmd StdinReadPre * let s:std_in=1
