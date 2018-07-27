@@ -12,7 +12,7 @@
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
-to manage all config files. No symlinks or copying of files required. Another benefit of a bare repo is that it does not create a `.git` folder and therfore does not interfere with any other git projects in the home directory. More info can be found in this [Atlassian blog post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
+to manage all config files. No symlinks or copying of files required. Another benefit of a bare repo is that it does not create a `.git` folder and therefore does not interfere with any other git projects in the home directory. More info can be found in this [Atlassian blog post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
 A Git alias (`config`) is used to manage all configuration files from the `$HOME` directory. By default all files which were not expicitly added are not shown in the `config status`.
 
