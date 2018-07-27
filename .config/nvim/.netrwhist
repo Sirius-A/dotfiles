@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/mnt/d/Users/fabio/NodeDev/sv-restaurant-zug-bot'
-let g:netrw_dirhist_2='/mnt/d/Users/fabio/NodeDev/sv-restaurant-zug-bot/app'
-let g:netrw_dirhist_3='/mnt/d/Users/fabio/NodeDev/sv-restaurant-zug-bot'
-let g:netrw_dirhist_4='/mnt/d/Users/fabio/NodeDev/sv-restaurant-zug-bot/app'
