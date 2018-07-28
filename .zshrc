@@ -23,7 +23,7 @@ compinit
 # Start ssh-agent on startup
 # The key is added automatically on first use
 # thanks to "AddKeysToAgent yes" setting in ~/ssh/config
-[ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent)
+[ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent) 1> /dev/null
 
 #------------------------------------------------------------------------------
 #                               Options
