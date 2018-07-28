@@ -30,9 +30,9 @@ compinit
 #------------------------------------------------------------------------------
 # Enable autocompletion of hidden files without typing a dot at the start
 setopt globdots
-setopt autoparamslash       # tab completing directory appends a slash
-setopt correct              # command auto-correction
-setopt correctall           # argument auto-correction
+setopt autoparamslash       # Tab completing directory appends a slash
+setopt correct              # Command auto-correction
+setopt correctall           # Argument auto-correction
 
 export EDITOR='nvim'
 #-------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ if [ -d ~/.config/zsh/powerlevel9k ]; then
   POWERLEVEL9K_STATUS_OK=false
   POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
   POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
-# truncate path /usr/share/plasma to /u/s/plasma
+# Truncate path /usr/share/plasma to /u/s/plasma
   POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   POWERLEVEL9K_SHORTEN_DELIMITER=""
   POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
@@ -79,10 +79,7 @@ fi
 #-------------------------------------------------------------------------------
 #                      Setup and load external tools
 #-------------------------------------------------------------------------------
-# execute alias file if it exists
-[ -f ~/.aliases.sh ] && . ~/.aliases.sh
-
-# Execute scripts that are only relavant for this machine
+# Execute scripts that are only relevant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # Execute fzf https://github.com/junegunn/fzf
