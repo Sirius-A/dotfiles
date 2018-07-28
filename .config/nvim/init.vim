@@ -192,8 +192,8 @@ endfunction
 
 CommandAlias E e
 CommandAlias E! e!
-CommandAlias Q Q
-CommandAlias Q! Q!
+CommandAlias Q q
+CommandAlias Q! q!
 CommandAlias QA qa
 CommandAlias Qa qa
 CommandAlias qA qa
