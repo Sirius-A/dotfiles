@@ -179,6 +179,34 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 " Set syntax highlighting for specific file types
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+
+"-------------------------------------------------------------------------------
+"                             Command Mappings
+"-------------------------------------------------------------------------------
+" Replace a builtin commands using cabbrev
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+command! -nargs=+ CommandAlias call <SID>CommandAlias(<f-args>)
+function! s:CommandAlias(abbreviation, expansion) " {{{
+  execute 'cabbrev ' . a:abbreviation . ' <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "' . a:expansion . '" : "' . a:abbreviation . '"<CR>'
+endfunction
+
+CommandAlias E e
+CommandAlias E! e!
+CommandAlias Q Q
+CommandAlias Q! Q!
+CommandAlias QA qa
+CommandAlias Qa qa
+CommandAlias qA qa
+CommandAlias QA! qa!
+CommandAlias Qa! qa!
+CommandAlias qA! qa!
+CommandAlias WQ wq
+CommandAlias Wq wq
+CommandAlias wQ wq
+CommandAlias WQ! wq!
+CommandAlias Wq! wq!
+CommandAlias wQ! wq!
+
 "-------------------------------------------------------------------------------
 "                              Key Mappings
 "-------------------------------------------------------------------------------
