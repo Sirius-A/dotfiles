@@ -85,11 +85,15 @@ fi
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Add yarn to path for globally installed yarn packages
+export PATH="$(yarn global bin):$PATH"
+
 # Node Version Manager https://github.com/creationix/nvm#installation
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Add yarn to path for globally installed yarn packages
-export PATH="$(yarn global bin):$PATH"
-
+#-------------------------------------------------------------------------------
+#                      Load Aliases and utility functions
+#-------------------------------------------------------------------------------
+[ -f ~/.aliases.sh ] && . ~/.aliases.sh
