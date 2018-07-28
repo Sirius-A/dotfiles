@@ -19,7 +19,3 @@ fi
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# Start ssh-agent on startup
-# The key is added automatically on first use
-# thanks to "AddKeysToAgent yes" setting in ~/ssh/config
-[ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent)
