@@ -12,7 +12,7 @@ unsetopt autocd beep
 # - Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # Colorize completions using default `ls` colors.
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 # enable menu selection for completion
 zstyle ':completion:*' menu select
 
@@ -34,11 +34,25 @@ setopt globdots
 setopt autoparamslash       # Tab completing directory appends a slash
 setopt correct              # Command auto-correction
 setopt correctall           # Argument auto-correction
+setopt interactivecomments  # allow comments, even in interactive shells
 
 export EDITOR='nvim'
+
+
 #-------------------------------------------------------------------------------
 #                         Shell helper functions
 #-------------------------------------------------------------------------------
+# Make CTRL-Z background things and unbackground them.
+function fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle push-input
+  fi
+}
+zle -N fg-bg
+bindkey '^Z' fg-bg
+
 autoload -U add-zsh-hook
 
 function auto-ls-after-cd() {
@@ -50,6 +64,16 @@ function auto-ls-after-cd() {
   fi
 }
 add-zsh-hook chpwd auto-ls-after-cd
+
+# adds `cdr` command for navigating to recent directories
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# enable menu-style completion for cdr
+zstyle ':completion:*:*:cdr:*:*' menu selection
+
+# fall through to cd if cdr is passed a non-recent dir as an argument
+zstyle ':chpwd:*' recent-dirs-default true
 
 #-------------------------------------------------------------------------------
 #                            Prompt / Powerline
@@ -90,6 +114,9 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # powerline9k - Command prompt
   POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
   antigen theme bhilburn/powerlevel9k powerlevel9k
+
+  # Auto Suggestions
+  antigen bundle zsh-users/zsh-autosuggestions
 
   antigen apply
 fi
