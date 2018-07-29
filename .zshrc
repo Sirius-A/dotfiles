@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt autocd beep
-bindkey -v
+# bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # Make completion:
@@ -58,7 +58,7 @@ add-zsh-hook chpwd auto-ls-after-cd
 POWERLEVEL9K_MODE='nerdfont-complete'
 DEFAULT_USER='fabio'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
@@ -74,6 +74,7 @@ POWERLEVEL9K_COLOR_SCHEME='dark'
 POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
 POWERLEVEL9K_HIDE_BRANCH_ICON=true
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
 
 #-------------------------------------------------------------------------------
 #                      Setup and load external tools
@@ -85,6 +86,7 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
 
   # load autocompletions for various tools
   antigen bundle zsh-users/zsh-completions
+
   # powerline9k - Command prompt
   POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
   antigen theme bhilburn/powerlevel9k powerlevel9k
@@ -100,8 +102,8 @@ fi
 
 # Node Version Manager https://github.com/creationix/nvm#installation
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add yarn to path for globally installed yarn packages
 export PATH="$(yarn global bin):$PATH"
