@@ -6,9 +6,10 @@
 - Neovim (or Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
   - Plugin manager:  vim-plug https://github.com/junegunn/vim-plug#installation
   - Python3 support https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
-- Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH 
+- Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH
+  - Plugin manager: Antigen https://github.com/zsh-users/antigen#installation
 - A nerd font of choice: https://github.com/ryanoasis/nerd-fonts
-
+- Terminal Emulator for Win10 WSL: https://github.com/mintty/wsltty#installation-from-this-repository
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
@@ -28,8 +29,11 @@ config config --local status.showUntrackedFiles no
 
 # Setup the configuration files form this repo
 config checkout
-config submodule init
-config submodule update
+
+# Intall Vim plugins
+# (Also installs fzf for the system)
+nvim
+:PlugInstall
 ```
 
 ### Update / Add Configs
@@ -43,5 +47,5 @@ config push
 ```
 
 ## Additional Configs
-
-* VSCode settings and extensions are managed in a [separate gist](https://gist.github.com/Sirius-A/302a99c5840e6b462c2bad27ee1880d3) using the [Settings Sync Extension](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). 
+- VSCode settings and extensions are managed in a [separate gist](https://gist.github.com/Sirius-A/302a99c5840e6b462c2bad27ee1880d3) using the [Settings Sync Extension](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync).
+- Theme for WSLtty / Mintty: https://github.com/arcticicestudio/nord-mintty
