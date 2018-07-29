@@ -200,6 +200,7 @@ CommandAlias qA qa
 CommandAlias QA! qa!
 CommandAlias Qa! qa!
 CommandAlias qA! qa!
+CommandAlias W w
 CommandAlias WQ wq
 CommandAlias Wq wq
 CommandAlias wQ wq
