@@ -27,7 +27,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
 
 # Setup the configuration files form this repo
-config checkout   
+config checkout
+config submodule init
+config submodule update
 ```
 
 ### Update / Add Configs

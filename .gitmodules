@@ -1,3 +1,0 @@
-[submodule ".config/zsh/powerlevel9k"]
-	path = .config/zsh/powerlevel9k
-	url = git@github.com:bhilburn/powerlevel9k.git

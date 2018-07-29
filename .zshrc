@@ -5,7 +5,6 @@ SAVEHIST=1000
 unsetopt autocd beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 
 # Make completion:
 # - Case-insensitive.
@@ -19,6 +18,8 @@ zstyle ':completion:*' menu select
 
 autoload -Uz compinit
 compinit
+
+
 
 # Start ssh-agent on startup
 # The key is added automatically on first use
@@ -54,46 +55,58 @@ add-zsh-hook chpwd auto-ls-after-cd
 #                            Prompt / Powerline
 #-------------------------------------------------------------------------------
 # Setup Prompt / Powerline
-if [ -d ~/.config/zsh/powerlevel9k ]; then
-  POWERLEVEL9K_MODE='nerdfont-complete'
-  DEFAULT_USER='fabio'
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time)
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-  POWERLEVEL9K_STATUS_OK=false
-  POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
-  POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
+POWERLEVEL9K_MODE='nerdfont-complete'
+DEFAULT_USER='fabio'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_STATUS_OK=false
+POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
 # Truncate path /usr/share/plasma to /u/s/plasma
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-  POWERLEVEL9K_SHORTEN_DELIMITER=""
-  POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-  POWERLEVEL9K_TIME_BACKGROUND="black"
-  POWERLEVEL9K_TIME_FOREGROUND="249"
-  POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uE12E"
-  POWERLEVEL9K_COLOR_SCHEME='light'
-  POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
-  POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
-  POWERLEVEL9K_HIDE_BRANCH_ICON=true
-  source ~/.config/zsh/powerlevel9k/powerlevel9k.zsh-theme
-fi
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_TIME_BACKGROUND="black"
+POWERLEVEL9K_TIME_FOREGROUND="249"
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uE12E"
+POWERLEVEL9K_COLOR_SCHEME='dark'
+POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
+POWERLEVEL9K_HIDE_BRANCH_ICON=true
+
 #-------------------------------------------------------------------------------
 #                      Setup and load external tools
 #-------------------------------------------------------------------------------
+
+# Antigen / Plugins
+if [ -f ~/.config/zsh/antigen.zsh ]; then
+  source ~/.config/zsh/antigen.zsh
+
+  # load autocompletions for various tools
+  antigen bundle zsh-users/zsh-completions
+  # powerline9k - Command prompt
+  POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
+  antigen theme bhilburn/powerlevel9k powerlevel9k
+
+  antigen apply
+fi
+
 # Execute scripts that are only relevant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Add yarn to path for globally installed yarn packages
-export PATH="$(yarn global bin):$PATH"
-
 # Node Version Manager https://github.com/creationix/nvm#installation
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Add yarn to path for globally installed yarn packages
+export PATH="$(yarn global bin):$PATH"
+
 #-------------------------------------------------------------------------------
 #                      Load Aliases and utility functions
 #-------------------------------------------------------------------------------
-[ -f ~/.aliases.sh ] && . ~/.aliases.sh
+[ -f ~/.aliases.sh ] && source ~/.aliases.sh
