@@ -54,25 +54,29 @@ call plug#end()
 set encoding=utf-8
 set noswapfile
 
-set number
-set cursorline
+set number               " Show line numbers in gutter
+set cursorline           " Highlight current line
 set showcmd              " Display incomplete commands
-set hidden               " Do not close open unsaved buffers when openening a new Vim instance
+set hidden               " Do not close open unsaved buffers when opening a new Vim instance
 set mouse=n              " Enable mouse for resizing and stuff
-set showmatch
+set showmatch            " Highlight search results
+set formatoptions+=j     " Remove comment leader when joining comment lines
+set switchbuf=usetab     " Try to reuse windows/tabs when switching buffers
 
-set ignorecase smartcase " Ignore case unless a captial letter is entered
+set ignorecase smartcase " Ignore case unless a capital letter is entered
 set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise
 
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set shiftround
-set expandtab
+set expandtab            " always use spaces instead of tabs
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+set whichwrap=b,h,l,s,<,>,[,],~  " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
 let mapleader = "\<Space>"
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
@@ -247,6 +251,12 @@ nnoremap XX "_dd
 
 " Select last pasted text
 nmap vp `[v`]
+
+" Auto completion seletion using ctrl + movement keys
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
+inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " CtrlP
 " https://github.com/ctrlpvim/ctrlp.vim
