@@ -79,8 +79,10 @@ set splitright
 
 set whichwrap=b,h,l,s,<,>,[,],~  " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
-let mapleader = "\<Space>"
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
+let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode 
+
+let mapleader = "\<Space>"
 
 " Theme settings
 syntax on
