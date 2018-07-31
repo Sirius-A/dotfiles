@@ -164,6 +164,7 @@ set complete+=kspell
 "-------------------------------NERDTree----------------------------------------
 let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
 let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden=1
 
 " Open NERDTree automatically when vim starts up and no files we specified
 autocmd StdinReadPre * let s:std_in=1
@@ -266,6 +267,7 @@ inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
