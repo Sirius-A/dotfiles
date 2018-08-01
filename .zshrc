@@ -6,6 +6,12 @@ unsetopt autocd beep
 # bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# Colorize dir lists if colors are available
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+fi
+
 # Make completion:
 # - Case-insensitive.
 # - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
@@ -18,8 +24,6 @@ zstyle ':completion:*' menu select
 
 autoload -Uz compinit
 compinit
-
-
 
 # Start ssh-agent on startup
 # The key is added automatically on first use
@@ -38,9 +42,8 @@ setopt interactivecomments  # allow comments, even in interactive shells
 
 export EDITOR='nvim'
 
-
 #-------------------------------------------------------------------------------
-#                         Shell helper functions
+#                         Shell utility functions
 #-------------------------------------------------------------------------------
 # Make CTRL-Z background things and unbackground them.
 function fg-bg() {

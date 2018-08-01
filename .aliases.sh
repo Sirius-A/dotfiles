@@ -1,10 +1,4 @@
-# Colorize ls if colors are available
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-fi
-
-# ensure correct behavior when sudo-ing an alias
+# Ensure correct behavior when sudo-ing an alias
 alias sudo='sudo '
 
 # Some ls aliases
