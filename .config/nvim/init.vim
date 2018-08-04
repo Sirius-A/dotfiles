@@ -40,12 +40,13 @@ let g:deoplete#enable_at_startup = 1
 " Syntaxes & Language tools
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim' " Syntax highlighting
-Plug 'mhartington/nvim-typescript'  " TS autocompletion
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TS autocompletion
 Plug 'elzr/vim-json'                " Better json support
 Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
+Plug 'plasticboy/vim-markdown'      " Better Markdown support
 
-" Icons for AAALLL THE THING!! (should be loaded at the end)
+" Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
