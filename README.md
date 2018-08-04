@@ -10,6 +10,7 @@
   - Plugin manager: Antigen https://github.com/zsh-users/antigen#installation
 - A nerd font of choice: https://github.com/ryanoasis/nerd-fonts
 - Terminal Emulator for Win10 WSL: https://github.com/mintty/wsltty#installation-from-this-repository
+
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
@@ -20,7 +21,6 @@ A Git alias (`config`) is used to manage all configuration files from the `$HOME
 ### Install / Setup
 
 ``` sh
-cd
 git clone --bare git@github.com:Sirius-A/dotfiles.git ~/.cfg
 
 # Initial config alias setup
@@ -30,10 +30,15 @@ config config --local status.showUntrackedFiles no
 # Setup the configuration files form this repo
 config checkout
 
+# Install tmux plugins
+tmux
+<prefix> + I # (Captial I)
+
 # Intall Vim plugins
 # (Also installs fzf for the system)
 nvim
 :PlugInstall
+:UpdateRemotePlugins
 ```
 
 ### Update / Add Configs
