@@ -62,6 +62,7 @@ set hidden               " Do not close open unsaved buffers when opening a new 
 set mouse=n              " Enable mouse for resizing and stuff
 set showmatch            " Highlight search results
 set formatoptions+=j     " Remove comment leader when joining comment lines
+set nojoinspaces         " Only one space when joining lines
 set switchbuf=usetab     " Try to reuse windows/tabs when switching buffers
 
 set ignorecase smartcase " Ignore case unless a capital letter is entered
@@ -70,8 +71,14 @@ set smartcase            " Ignore case if search pattern is all lowercase,case-s
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
-set shiftround
-set expandtab            " always use spaces instead of tabs
+set shiftround           " < and > shift to the next tab stop defined by shiftwidth.
+set expandtab            " Always use spaces instead of tabs
+
+set sidescrolloff=3      " Keep at least 3 lines left/right
+set scrolloff=3          " Keep at least 3 lines above/below
+
+" Line between splits
+set fillchars=vert:┃     " Heavy vertical (U+2503, UTF-8: E2 94 83)
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -92,7 +99,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-set background=dark " Needs to be placed before colorscheme definition
+set noshowmode      " Airline shows mode, so hide default mode
+set background=dark " (Needs to be placed before colorscheme definition)
 colorscheme hybrid_reverse
 
 " Restore last position when reopening a file
