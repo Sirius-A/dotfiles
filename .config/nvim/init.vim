@@ -65,14 +65,18 @@ set formatoptions+=j     " Remove comment leader when joining comment lines
 set nojoinspaces         " Only one space when joining lines
 set switchbuf=usetab     " Try to reuse windows/tabs when switching buffers
 
-set ignorecase smartcase " Ignore case unless a capital letter is entered
-set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise
-
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set shiftround           " < and > shift to the next tab stop defined by shiftwidth.
 set expandtab            " Always use spaces instead of tabs
+
+" Search and replace
+set ignorecase smartcase " Ignore case unless a capital letter is entered
+set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise
+if exists('&inccommand')
+  set inccommand=nosplit   " Highlight substitutions while typing them
+endif
 
 set sidescrolloff=3      " Keep at least 3 lines left/right
 set scrolloff=3          " Keep at least 3 lines above/below
@@ -87,7 +91,7 @@ set splitright
 set whichwrap=b,h,l,s,<,>,[,],~  " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
-let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode 
+let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
 
 let mapleader = "\<Space>"
 
