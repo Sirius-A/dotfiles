@@ -8,15 +8,18 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sensible' " Default configuration
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
+Plug 'tpope/vim-repeat'     " Allows plugins to use repat the whole operation with '.'
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 Plug 'wincent/terminus' " Improve Vim inside the terminal
 Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
 
+Plug 'mhinz/vim-janah' " Colorscheme
 Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
 
 " Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive' " Git utils
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 Plug 'scrooloose/nerdtree' " File Browser / explorer
@@ -38,7 +41,9 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 " Syntaxes & Language tools
+Plug 'sheerun/vim-polyglot'         "A collection of language packs
 Plug 'pangloss/vim-javascript'
+Plug 'bdauria/angular-cli.vim'      " Integration with angulat cli and file navigation utilities
 Plug 'HerringtonDarkholme/yats.vim' " Syntax highlighting
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TS autocompletion
 Plug 'elzr/vim-json'                " Better json support
@@ -58,34 +63,34 @@ call plug#end()
 set encoding=utf-8
 set noswapfile
 
-set number               " Show line numbers in gutter
-set cursorline           " Highlight current line
-set showcmd              " Display incomplete commands
-set hidden               " Do not close open unsaved buffers when opening a new Vim instance
-set mouse=n              " Enable mouse for resizing and stuff
-set showmatch            " Highlight search results
-set formatoptions+=j     " Remove comment leader when joining comment lines
-set nojoinspaces         " Only one space when joining lines
-set switchbuf=usetab     " Try to reuse windows/tabs when switching buffers
+set number                       " Show line numbers in gutter
+set cursorline                   " Highlight current line
+set showcmd                      " Display incomplete commands
+set hidden                       " Do not close open unsaved buffers when opening a new Vim instance
+set mouse=n                      " Enable mouse for resizing and stuff
+set showmatch                    " Highlight search results
+set formatoptions+=j             " Remove comment leader when joining comment lines
+set nojoinspaces                 " Only one space when joining lines
+set switchbuf=usetab             " Try to reuse windows/tabs when switching buffers
 
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
-set shiftround           " < and > shift to the next tab stop defined by shiftwidth.
-set expandtab            " Always use spaces instead of tabs
+set shiftround                   " < and > shift to the next tab stop defined by shiftwidth.
+set expandtab                    " Always use spaces instead of tabs
 
 " Search and replace
-set ignorecase smartcase " Ignore case unless a capital letter is entered
-set smartcase            " Ignore case if search pattern is all lowercase,case-sensitive otherwise
+set ignorecase smartcase         " Ignore case unless a capital letter is entered
+set smartcase                    " Ignore case if search pattern is all lowercase,case-sensitive otherwise
 if exists('&inccommand')
-  set inccommand=nosplit   " Highlight substitutions while typing them
+  set inccommand=nosplit         " Highlight substitutions while typing them
 endif
 
-set sidescrolloff=3      " Keep at least 3 lines left/right
-set scrolloff=3          " Keep at least 3 lines above/below
+set sidescrolloff=3              " Keep at least 3 lines left/right
+set scrolloff=3                  " Keep at least 3 lines above/below
 
 " Line between splits
-set fillchars=vert:┃     " Heavy vertical (U+2503, UTF-8: E2 94 83)
+set fillchars=vert:┃             " Heavy vertical (U+2503, UTF-8: E2 94 83)
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -108,7 +113,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set noshowmode      " Airline shows mode, so hide default mode
 set background=dark " (Needs to be placed before colorscheme definition)
-colorscheme hybrid_reverse
+"colorscheme hybrid_reverse
+autocmd ColorScheme janah highlight Normal ctermbg=235
+colorscheme janah
 
 " Restore last position when reopening a file
 if has("autocmd")
@@ -202,7 +209,7 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 " Set syntax highlighting for specific file types
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-
+autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 "-------------------------------------------------------------------------------
 "                             Command Mappings
 "-------------------------------------------------------------------------------
