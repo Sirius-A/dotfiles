@@ -67,11 +67,19 @@ set number                       " Show line numbers in gutter
 set cursorline                   " Highlight current line
 set showcmd                      " Display incomplete commands
 set hidden                       " Do not close open unsaved buffers when opening a new Vim instance
+set switchbuf=usetab             " Try to reuse windows/tabs when switching buffers
 set mouse=n                      " Enable mouse for resizing and stuff
 set showmatch                    " Highlight search results
 set formatoptions+=j             " Remove comment leader when joining comment lines
 set nojoinspaces                 " Only one space when joining lines
-set switchbuf=usetab             " Try to reuse windows/tabs when switching buffers
+
+" Auto line break with full words
+set formatoptions+=w
+set tw=80
+" Display ruler after 80 chars
+set colorcolumn=80
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
 
 " Softtabs, 2 spaces
 set tabstop=2
