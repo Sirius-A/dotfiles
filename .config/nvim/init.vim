@@ -64,6 +64,7 @@ call plug#end()
 "-------------------------------------------------------------------------------
 set encoding=utf-8
 set noswapfile
+set path+=**                     " Include all subdrirectory when openening a project root
 
 set number                       " Show line numbers in gutter
 set cursorline                   " Highlight current line
@@ -82,12 +83,12 @@ set tw=80
 set colorcolumn=80
 highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 
-
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set shiftround                   " < and > shift to the next tab stop defined by shiftwidth.
 set expandtab                    " Always use spaces instead of tabs
+set lazyredraw                   " don't bother updating screen during macro playback
 
 " Search and replace
 set ignorecase smartcase         " Ignore case unless a capital letter is entered
@@ -106,7 +107,18 @@ set fillchars=vert:┃             " Heavy vertical (U+2503, UTF-8: E2 94 83)
 set splitbelow
 set splitright
 
-set whichwrap=b,h,l,s,<,>,[,],~  " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+
+" Persintent undo
+if has('persistent_undo')
+  if exists('$SUDO_USER')
+    set noundofile                    " don't create root-owned files
+  else
+    set undodir=~/.local/.vim/tmp/undo
+    set undodir+=~/.vim/tmp/undo      " keep undo files out of the way
+    set undodir+=.
+    set undofile                      " actually use undo files
+  endif
+endif
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
@@ -188,6 +200,11 @@ if executable('ag')
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
     nnoremap \ :Ag<SPACE>
   endif
+endif
+
+
+if has('syntax')
+  set spellcapcheck=                  " don't check for capital letters at start of sentence
 endif
 
 " Autocomplete with dictionary words when spell check is on
