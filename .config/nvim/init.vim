@@ -20,6 +20,7 @@ Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/krist
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive' " Git utils
+Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 Plug 'scrooloose/nerdtree' " File Browser / explorer
@@ -49,6 +50,7 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TS autocompletion
 Plug 'elzr/vim-json'                " Better json support
 Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
+Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
 Plug 'plasticboy/vim-markdown'      " Better Markdown support
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
