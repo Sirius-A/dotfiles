@@ -42,7 +42,8 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 " Syntaxes & Language tools
-Plug 'sheerun/vim-polyglot'         "A collection of language packs
+Plug 'w0rp/ale'                     " Asynchronous lint engine
+Plug 'sheerun/vim-polyglot'         " A collection of language packs
 Plug 'pangloss/vim-javascript'
 Plug 'bdauria/angular-cli.vim'      " Integration with angulat cli and file navigation utilities
 Plug 'HerringtonDarkholme/yats.vim' " Syntax highlighting
@@ -132,6 +133,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#ale#enabled = 1      " Show lint status in airline
 
 set noshowmode      " Airline shows mode, so hide default mode
 set background=dark " (Needs to be placed before colorscheme definition)
@@ -210,6 +212,13 @@ endif
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
+"---------------------------------Ctrl P----------------------------------------
+" https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'cra'
+let g:ctrlp_show_hidden = 1
+
 "-------------------------------NERDTree----------------------------------------
 let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
 let NERDTreeQuitOnOpen = 1
@@ -268,7 +277,7 @@ CommandAlias wQ! wq!
 "-------------------------------------------------------------------------------
 "                              Key Mappings
 "-------------------------------------------------------------------------------
-" Easier Split Navigation
+" Easier Split Navigation via Ctrl + <Vim direction>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -310,13 +319,6 @@ inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
 inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
-
-" CtrlP
-" https://github.com/ctrlpvim/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
