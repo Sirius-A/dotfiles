@@ -118,6 +118,10 @@ if has('persistent_undo')
     set undodir+=~/.vim/tmp/undo      " keep undo files out of the way
     set undodir+=.
     set undofile                      " actually use undo files
+
+    if !isdirectory('~/.local/.vim/tmp/undo')
+      call mkdir('~/.local/.vim/tmp/undo', 'p')
+    endif
   endif
 endif
 
