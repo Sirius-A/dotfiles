@@ -216,6 +216,13 @@ endif
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
+"---------------------------------Ale----------------------------------------
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_fixers = {
+      \ 'scss': ['sasslint'],
+      \ 'typescript': [ 'tslint', 'eslint' ],
+      \ }
 "---------------------------------Ctrl P----------------------------------------
 " https://github.com/ctrlpvim/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
@@ -310,6 +317,9 @@ nnoremap <leader>q :bp<cr>:bd #<cr>
 "Toggle spellcheck
 nnoremap <F7> :setlocal spell! spell?<CR>
 inoremap <F7> <C-o>::setlocal spell! spell?<CR>
+
+" Fix lint errors
+nnoremap <A-f> :ALEFix<CR>
 
 " Delete to black hole register with X
 noremap X "_d
