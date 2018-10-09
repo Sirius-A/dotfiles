@@ -114,9 +114,8 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # load autocompletions for various tools
   antigen bundle zsh-users/zsh-completions
 
-  # powerline9k - Command prompt
-  POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-  antigen theme bhilburn/powerlevel9k powerlevel9k
+  # spaceship prompt
+  antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
