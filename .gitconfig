@@ -1,7 +1,7 @@
 [user]
   name = Fabio Zuber
 [push]
-  default = matching
+  default = upstream
 [core]
   excludesfile = /home/fabio/.gitignore_global
 [alias]
