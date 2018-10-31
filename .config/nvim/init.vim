@@ -15,6 +15,7 @@ Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
 
 Plug 'mhinz/vim-janah' " Colorscheme
 Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
+Plug 'chriskempson/base16-vim' " Base 16 Colorschemes http://chriskempson.com/projects/base16/
 
 " Extensions
 Plug 'vim-airline/vim-airline'
@@ -26,6 +27,7 @@ Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mhinz/vim-startify' " Startpage
+Plug 'wincent/ferret'     " Better (grep) find and replace
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
@@ -141,9 +143,11 @@ let g:airline#extensions#ale#enabled = 1      " Show lint status in airline
 
 set noshowmode      " Airline shows mode, so hide default mode
 set background=dark " (Needs to be placed before colorscheme definition)
+
 "colorscheme hybrid_reverse
-autocmd ColorScheme janah highlight Normal ctermbg=235
-colorscheme janah
+"autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
+colorscheme base16-tomorrow-night
+set termguicolors " needed for base16 theme support
 
 " Restore last position when reopening a file
 if has("autocmd")
