@@ -9,25 +9,28 @@ Plug 'tpope/vim-sensible' " Default configuration
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
 Plug 'tpope/vim-repeat'     " Allows plugins to use repat the whole operation with '.'
-Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 Plug 'wincent/terminus' " Improve Vim inside the terminal
+Plug 'wincent/ferret'   " Better (grep) find and replace
+Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
+Plug 'simeji/winresizer' " Resize window mode via CTRL + e
 
+" Look and Feel
 Plug 'mhinz/vim-janah' " Colorscheme
 Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
 Plug 'chriskempson/base16-vim' " Base 16 Colorschemes http://chriskempson.com/projects/base16/
-
-" Extensions
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Extensions
 Plug 'tpope/vim-fugitive' " Git utils
 Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
+Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
-Plug 'wincent/ferret'     " Better (grep) find and replace
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
