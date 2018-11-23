@@ -1,10 +1,9 @@
 [user]
   name = Fabio Zuber
-	email = fabio.zuber@siemens.com
 [push]
   default = upstream
 [core]
-  excludesfile = /home/one/.gitignore_global
+  excludesfile = /home/fabio/.gitignore_global
 [alias]
   co = checkout
 
