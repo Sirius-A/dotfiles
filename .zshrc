@@ -39,6 +39,9 @@ setopt autoparamslash       # Tab completing directory appends a slash
 setopt correct              # Command auto-correction
 setopt correctall           # Argument auto-correction
 setopt interactivecomments  # allow comments, even in interactive shells
+setopt appendhistory        # Append history to the history file (no overwriting)
+setopt inc_append_history   # Appends every command to the history file once it is executed
+setopt share_history        # Reloads the history whenever you use it
 
 export EDITOR='nvim'
 
@@ -83,7 +86,7 @@ zstyle ':chpwd:*' recent-dirs-default true
 #-------------------------------------------------------------------------------
 # Setup Prompt / Powerline
 POWERLEVEL9K_MODE='nerdfont-complete'
-DEFAULT_USER='fabio'
+DEFAULT_USER='one'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
