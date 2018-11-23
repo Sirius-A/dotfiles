@@ -39,6 +39,7 @@ tmux
 nvim
 :PlugInstall
 :UpdateRemotePlugins
+:CocInstall coc-css coc-tsserver coc-html coc-json coc-tslint
 ```
 
 ### Update / Add Configs

@@ -35,18 +35,8 @@ Plug 'mhinz/vim-startify' " Startpage
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
 
-" Deoplete - asynchronous completion framework
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-let g:deoplete#enable_at_startup = 1
-
 " Syntaxes & Language tools
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}} " Completion and LSP support
 Plug 'w0rp/ale'                     " Asynchronous lint engine
 Plug 'sheerun/vim-polyglot'         " A collection of language packs
 Plug 'pangloss/vim-javascript'
@@ -75,6 +65,7 @@ set path+=**                     " Include all subdrirectory when openening a pr
 set number                       " Show line numbers in gutter
 set cursorline                   " Highlight current line
 set showcmd                      " Display incomplete commands
+set cmdheight=2                  " More room for longer messages
 set hidden                       " Do not close open unsaved buffers when opening a new Vim instance
 set switchbuf=usetab             " Try to reuse windows/tabs when switching buffers
 set mouse=n                      " Enable mouse for resizing and stuff
@@ -112,7 +103,6 @@ set fillchars=vert:┃             " Heavy vertical (U+2503, UTF-8: E2 94 83)
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
 
 " Persintent undo
 if has('persistent_undo')
@@ -341,18 +331,37 @@ inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
 inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
+"---------------------------- coc.nvim -----------------------------------------
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap to do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " Show currently open file in NT
 map <A-n> :NERDTreeFind<CR>
 " Focus NT from anywhere
 map <A-b> :NERDTree<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Global OSX Clipboard Handling (tmux/vim/osx)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('unnamedplus')
-  set clipboard=unnamedplus
-else
-  set clipboard=unnamed
-endif
 
