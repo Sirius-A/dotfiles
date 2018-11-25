@@ -247,6 +247,11 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+
+"---------------------------- coc.nvim -----------------------------------------
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 "-------------------------------------------------------------------------------
 "                        	Syntax and Languages
 "-------------------------------------------------------------------------------
@@ -254,6 +259,7 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+
 "-------------------------------------------------------------------------------
 "                             Command Mappings
 "-------------------------------------------------------------------------------
@@ -332,6 +338,26 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
 inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
 "---------------------------- coc.nvim -----------------------------------------
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> for confirm completion.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -357,6 +383,15 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Shortcuts for denite interface
+" Show symbols of current buffer
+nnoremap <silent> <leader>o  :<C-u>Denite coc-symbols<cr>
+" Show diagnostics of current workspace
+nnoremap <silent> <leader>p  :<C-u>Denite coc-diagnostic<cr>
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>

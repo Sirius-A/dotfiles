@@ -86,7 +86,7 @@ zstyle ':chpwd:*' recent-dirs-default true
 #-------------------------------------------------------------------------------
 # Setup Prompt / Powerline
 POWERLEVEL9K_MODE='nerdfont-complete'
-DEFAULT_USER='one'
+DEFAULT_USER='fabio'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
