@@ -41,8 +41,7 @@ Plug 'w0rp/ale'                     " Asynchronous lint engine
 Plug 'sheerun/vim-polyglot'         " A collection of language packs
 Plug 'pangloss/vim-javascript'
 Plug 'bdauria/angular-cli.vim'      " Integration with angulat cli and file navigation utilities
-Plug 'HerringtonDarkholme/yats.vim' " Syntax highlighting
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TS autocompletion
+Plug 'HerringtonDarkholme/yats.vim' " Better Syntax highlighting for TS. Prefered over typescript-vim
 Plug 'elzr/vim-json'                " Better json support
 Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
