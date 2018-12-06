@@ -4,6 +4,10 @@
   default = upstream
 [core]
   excludesfile = /home/fabio/.gitignore_global
+[merge]
+      tool = nfugitive
+[mergetool "nfugitive"]
+    cmd = nvim -f -c "Gdiff" "$MERGED"<Paste>
 [alias]
   co = checkout
 
