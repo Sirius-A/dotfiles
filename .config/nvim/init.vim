@@ -31,6 +31,7 @@ Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
+Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
@@ -71,6 +72,7 @@ set mouse=n                      " Enable mouse for resizing and stuff
 set showmatch                    " Highlight search results
 set formatoptions+=j             " Remove comment leader when joining comment lines
 set nojoinspaces                 " Only one space when joining lines
+set updatetime=100               " check for file changes all 0.1 seconds. (used by gitgutter for example) default: 4000
 
 " Auto line break with full words
 set formatoptions+=w
