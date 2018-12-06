@@ -18,3 +18,7 @@
 
   # Interactively rebase all the commits on the current branch
   rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+
+  # remove ignored files from index
+  # From https://stackoverflow.com/questions/1274057/how-to-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore
+  remove-ignored = "!git ls-files --ignored --exclude-standard -z | xargs -0 git rm --cached"
