@@ -45,6 +45,11 @@ setopt share_history        # Reloads the history whenever you use it
 
 export EDITOR='nvim'
 
+# Ctrl + x, Ctrl + e opens default editor to enter a command
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 #-------------------------------------------------------------------------------
 #                         Shell utility functions
 #-------------------------------------------------------------------------------
