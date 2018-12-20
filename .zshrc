@@ -66,9 +66,10 @@ bindkey '^Z' fg-bg
 
 autoload -U add-zsh-hook
 
+# Automatically show files in a directory after changing to it
 function auto-ls-after-cd() {
   emulate -L zsh
-  # Only in response to a user-initiated `cd`, not indirectly (eg. via another
+  # Only in response to a user-initiated `cd`, not indirectly (e.g. via another
   # function).
   if [ "$ZSH_EVAL_CONTEXT" = "toplevel:shfunc" ]; then
     ls -a
@@ -93,7 +94,7 @@ zstyle ':chpwd:*' recent-dirs-default true
 POWERLEVEL9K_MODE='nerdfont-complete'
 DEFAULT_USER='fabio'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
@@ -102,12 +103,12 @@ POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_TIME_BACKGROUND="black"
-POWERLEVEL9K_TIME_FOREGROUND="249"
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uE12E"
-POWERLEVEL9K_COLOR_SCHEME='dark'
+POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
 POWERLEVEL9K_HIDE_BRANCH_ICON=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=''
 
