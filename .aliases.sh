@@ -19,6 +19,9 @@ alias ag='ag --smart-case --hidden'
 # See https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# Directory and file bookmarks
+alias vc='nvim ~/.config/nvim/init.vim'
+
 
 # Go to project root
 function up {

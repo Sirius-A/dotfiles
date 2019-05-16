@@ -9,7 +9,7 @@ unsetopt autocd beep
 # Colorize dir lists if colors are available
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
+  alias ls='ls --color=auto --group-directories-first'
 fi
 
 # Make completion:

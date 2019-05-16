@@ -14,6 +14,7 @@ Plug 'wincent/ferret'   " Better (grep) find and replace
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
 Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
 Plug 'simeji/winresizer' " Resize window mode via CTRL + e
+Plug 'wellle/targets.vim' " Additional text objects (allows ci[ for example)
 
 " Look and Feel
 Plug 'mhinz/vim-janah' " Colorscheme
@@ -21,9 +22,11 @@ Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/krist
 Plug 'chriskempson/base16-vim' " Base 16 Colorschemes http://chriskempson.com/projects/base16/
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jonathanfilip/vim-lucius'
 
 " Extensions
 Plug 'tpope/vim-fugitive' " Git utils
+Plug 'rbong/vim-flog' "Git log a dog viewer (uses fugitive)
 Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
 Plug 'Shougo/denite.nvim' " Allows 'panel' creation
@@ -141,8 +144,9 @@ set noshowmode      " Airline shows mode, so hide default mode
 set background=dark " (Needs to be placed before colorscheme definition)
 
 "colorscheme hybrid_reverse
-"autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
-colorscheme base16-tomorrow-night
+" autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
+" colorscheme base16-tomorrow-night
+colorscheme lucius
 set termguicolors " needed for base16 theme support
 
 " Restore last position when reopening a file
@@ -378,10 +382,10 @@ function! s:show_documentation()
 endfunction
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>.  <Plug>(coc-codeaction-selected)
+nmap <leader>.  <Plug>(coc-codeaction-selected)
 " Remap to do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>ca  <Plug>(coc-codeaction)
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -392,9 +396,14 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Shortcuts for denite interface
 " Show symbols of current buffer
-nnoremap <silent> <leader>o  :<C-u>Denite coc-symbols<cr>
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" Find symbol of current document
+nnoremap <silent> <leader>o :<C-u>CocList outline<cr>
 " Show diagnostics of current workspace
-nnoremap <silent> <leader>p  :<C-u>Denite coc-diagnostic<cr>
+nnoremap <silent> <leader>p  :<C-u>CocList diagnostics<cr>
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
