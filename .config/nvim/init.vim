@@ -256,8 +256,20 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 
 
 "---------------------------- coc.nvim -----------------------------------------
+let g:coc_global_extensions=[
+    \ 'coc-json',
+    \ 'coc-css',
+    \ 'coc-angular',
+    \ 'coc-tsserver',
+    \ 'coc-yaml',
+    \ 'coc-tslint',
+    \ 'coc-emmet',
+    \ 'coc-html'
+\]
+
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 "-------------------------------------------------------------------------------
 "                        	Syntax and Languages
