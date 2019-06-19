@@ -5,9 +5,9 @@
 [core]
   excludesfile = /home/fabio/.gitignore_global
 [merge]
-      tool = nfugitive
+  tool = nfugitive
 [mergetool "nfugitive"]
-    cmd = nvim -f -c "Gdiff" "$MERGED"<Paste>
+  cmd = nvim -f -c "Gdiff" "$MERGED"
 [alias]
   co = checkout
 

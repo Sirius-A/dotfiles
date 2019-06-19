@@ -262,7 +262,7 @@ let g:coc_global_extensions=[
     \ 'coc-angular',
     \ 'coc-tsserver',
     \ 'coc-yaml',
-    \ 'coc-tslint',
+    \ 'coc-tslint-plugin',
     \ 'coc-emmet',
     \ 'coc-html'
 \]
