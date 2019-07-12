@@ -1,7 +1,10 @@
 [user]
   name = Fabio Zuber
+  email = fabio.zuber@siemens.com
 [push]
   default = upstream
+[pull]
+	rebase = true
 [core]
   excludesfile = /home/fabio/.gitignore_global
 [merge]

@@ -35,6 +35,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
+Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
+
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
