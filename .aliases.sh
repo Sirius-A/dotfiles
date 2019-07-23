@@ -74,6 +74,28 @@ IFS=$SAVEIFS
 
 #--------------------------------------fzf-------------------------------------
 
+# open a config file in vim
+fconfig(){
+  local files="$HOME/.gitconfig
+$HOME/.config/nvim/init.vim
+$HOME/.config/i3/config
+$HOME/.aliases.sh
+$HOME/.zshrc
+$HOME/.ssh/config
+$HOME/.config/i3/i3exit
+$HOME/.Xresources
+$HOME/.tmux.conf"
+
+  local file=$(echo $files | fzf --height 40% --reverse)
+  echo $file
+
+  # Do not open any file if selection was canceled.
+  if [ "x$file" != "x" ]
+  then
+    echo $file | xargs vim
+  fi
+}
+
 # fkill - kill process
 fkill() {
   local pid
@@ -150,6 +172,7 @@ fstash() {
     fi
   done
 }
+
 
 # Get a random bofh excuse
 bofh() {
