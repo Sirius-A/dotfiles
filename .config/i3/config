@@ -248,8 +248,8 @@ mode "$mode_system" {
 
 
 # Set Proxy in gnome control center
-bindsym $mod+p mode "$mode_system"
-set $mode_system Proxy mode: (a)uto, (n)one, (m)anual
+bindsym $mod+p mode "$mode_proxy"
+set $mode_proxy Proxy mode: (a)uto, (n)one, (m)anual
 mode "$mode_system" {
     bindsym a exec --no-startup-id gsettings set org.gnome.system.proxy mode 'auto', mode "default"
     bindsym n exec --no-startup-id gsettings set org.gnome.system.proxy mode 'none', mode "default"
