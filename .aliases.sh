@@ -76,8 +76,8 @@ IFS=$SAVEIFS
 
 # open a config file in vim
 fconfig(){
-  local files="$HOME/.gitconfig
-$HOME/.config/nvim/init.vim
+  local files="$HOME/.config/nvim/init.vim
+$HOME/.gitconfig
 $HOME/.config/i3/config
 $HOME/.aliases.sh
 $HOME/.zshrc
