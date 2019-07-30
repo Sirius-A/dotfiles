@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt autocd beep
-# bindkey -v
+bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Colorize dir lists if colors are available
@@ -123,10 +123,11 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # load autocompletions for various tools
   antigen bundle zsh-users/zsh-completions
 
-  # powerline9k - Command prompt
-  POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-  antigen theme bhilburn/powerlevel9k powerlevel9k
+  # antigen bundle romkatv/powerlevel10k
+  # powerline10k - Command prompt
+  # POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/romkatv/powerlevel10k
 
+  antigen theme romkatv/powerlevel10k
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
 
