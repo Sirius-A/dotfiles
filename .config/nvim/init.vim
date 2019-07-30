@@ -44,7 +44,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone f
 Plug 'junegunn/fzf.vim'
 
 " Syntaxes & Language tools
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}} " Completion and LSP support
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
 Plug 'w0rp/ale'                     " Asynchronous lint engine
 Plug 'sheerun/vim-polyglot'         " A collection of language packs
 Plug 'pangloss/vim-javascript'
@@ -410,7 +410,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Shortcuts for denite interface
 " Show symbols of current buffer
-nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>i  :<C-u>CocList -I symbols<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>o :<C-u>CocList outline<cr>
 " Show diagnostics of current workspace
