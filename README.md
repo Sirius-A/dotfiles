@@ -8,6 +8,8 @@
   - Python3 support https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
 - Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH
   - Plugin manager: Antigen https://github.com/zsh-users/antigen#installation
+- i3-gaps:
+  - Debian based distros can use the `ppa` from here: https://github.com/regolith-linux/speed-ricer 
 - A nerd font of choice: https://github.com/ryanoasis/nerd-fonts
 - Terminal Emulator for Win10 WSL: https://github.com/mintty/wsltty#installation-from-this-repository
 
@@ -38,7 +40,6 @@ tmux
 # (Also installs fzf for the system)
 nvim
 :PlugInstall
-:UpdateRemotePlugins
 ```
 
 ### Update / Add Configs
