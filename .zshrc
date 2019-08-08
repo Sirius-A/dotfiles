@@ -139,6 +139,10 @@ fi
 
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Use rg so only relevant files are selected
+export FZF_DEFAULT_COMMAND='rg --files'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Node Version Manager https://github.com/creationix/nvm#installation
 export NVM_DIR="$HOME/.nvm"

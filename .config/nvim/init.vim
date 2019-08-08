@@ -5,7 +5,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Editor Settings
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-sensible' " Default configuration
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
 Plug 'tpope/vim-repeat'     " Allows plugins to use repat the whole operation with '.'
@@ -28,8 +27,6 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'tpope/vim-fugitive' " Git utils
 Plug 'rbong/vim-flog' "Git log a dog viewer (uses fugitive)
 Plug 'tpope/vim-eunuch'   " Unix File helpers
-Plug 'ctrlpvim/ctrlp.vim' " Fizzy File Finder
-Plug 'Shougo/denite.nvim' " Allows 'panel' creation
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
@@ -140,7 +137,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#ale#enabled = 1      " Show lint status in airline
 
 set noshowmode      " Airline shows mode, so hide default mode
 set background=dark " (Needs to be placed before colorscheme definition)
@@ -197,24 +193,6 @@ function! s:EnhanceCommitMessage()
 endfunction
 autocmd FileType gitcommit call <SID>EnhanceCommitMessage()
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files..
-  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
-
-
 if has('syntax')
   set spellcapcheck=                  " don't check for capital letters at start of sentence
 endif
@@ -229,12 +207,6 @@ let g:ale_fixers = {
       \ 'scss': ['sasslint'],
       \ 'typescript': [ 'tslint', 'eslint' ],
       \ }
-"---------------------------------Ctrl P----------------------------------------
-" https://github.com/ctrlpvim/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
 
 "-------------------------------NERDTree----------------------------------------
 let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
@@ -251,11 +223,18 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "----------------------------------fzf------------------------------------------
-"Hide statusline when fzf opens a :terminal buffer
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+if executable('fzf')
+  "Hide statusline when fzf opens a :terminal buffer
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+  let g:fzf_action = {
+        \ 'ctrl-s': 'split',
+        \ 'ctrl-v': 'vsplit'
+        \ }
+  nnoremap <c-p> :FZF<cr>
+end
 
 "---------------------------- coc.nvim -----------------------------------------
 let g:coc_global_extensions=[
@@ -271,7 +250,6 @@ let g:coc_global_extensions=[
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
 
 "-------------------------------------------------------------------------------
 "                        	Syntax and Languages
@@ -408,16 +386,21 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Shortcuts for denite interface
 " Show symbols of current buffer
 nnoremap <silent> <leader>i  :<C-u>CocList -I symbols<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>o :<C-u>CocList outline<cr>
 " Show diagnostics of current workspace
 nnoremap <silent> <leader>p  :<C-u>CocList diagnostics<cr>
-
+" Show commands
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+" Do default action for next item.
+nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
