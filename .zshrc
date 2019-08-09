@@ -137,10 +137,13 @@ fi
 # Execute scripts that are only relevant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
+# Tell rg to read its config file
+export RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
+
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Use rg so only relevant files are selected
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
