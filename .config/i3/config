@@ -62,7 +62,7 @@ bindsym $mod+Ctrl+m exec  i3-sensible-terminal -e 'alsamixer'
 bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
 bindsym $mod+F2 exec chromium-browser
 # bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F3 exec ranger
+bindsym $mod+F3 exec i3-sensible-terminal -e ranger
 bindsym $mod+F5 exec i3-sensible-terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
@@ -290,15 +290,15 @@ mode "resize" {
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
+exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
-# exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+#exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb # Keyboard layout applet
+exec --no-startup-id start_conky_maia
+#exec --no-startup-id start_conky_green
+exec --no-startup-id xautolock -time 10 -locker betterlockscreen -l
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
