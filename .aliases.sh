@@ -92,7 +92,7 @@ $HOME/.tmux.conf"
   # Do not open any file if selection was canceled.
   if [ "x$file" != "x" ]
   then
-    echo $file | xargs vim
+    echo $file | xargs nvim
   fi
 }
 
