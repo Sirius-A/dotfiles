@@ -166,6 +166,7 @@ for cmd in "${NODE_GLOBALS[@]}"; do
     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
 done
 
+
 # Add yarn to path for globally installed yarn packages
 export PATH="$(yarn global bin):$PATH"
 
