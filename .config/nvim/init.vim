@@ -145,7 +145,7 @@ set background=dark " (Needs to be placed before colorscheme definition)
 " autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
 " colorscheme base16-tomorrow-night
 colorscheme lucius
-set termguicolors " needed for base16 theme support
+"set termguicolors " needed for base16 theme support
 
 " Restore last position when reopening a file
 if has("autocmd")
