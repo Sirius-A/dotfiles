@@ -30,6 +30,7 @@ Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
+Plug 'ipod825/vim-netranger' " NerdTree alternative
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
@@ -42,7 +43,6 @@ Plug 'junegunn/fzf.vim'
 
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
-Plug 'w0rp/ale'                     " Asynchronous lint engine
 Plug 'sheerun/vim-polyglot'         " A collection of language packs
 Plug 'pangloss/vim-javascript'
 Plug 'bdauria/angular-cli.vim'      " Integration with angulat cli and file navigation utilities
@@ -200,22 +200,14 @@ endif
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
-"---------------------------------Ale----------------------------------------
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_fixers = {
-      \ 'scss': ['sasslint'],
-      \ 'typescript': [ 'tslint', 'eslint' ],
-      \ }
-
 "-------------------------------NERDTree----------------------------------------
-let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
+" let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
 
 " Open NERDTree automatically when vim starts up and no files we specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'NERDTree' argv()[0] | wincmd p | ene | endif
 
@@ -233,7 +225,20 @@ if executable('fzf')
         \ 'ctrl-s': 'split',
         \ 'ctrl-v': 'vsplit'
         \ }
-  nnoremap <c-p> :FZF<cr>
+  nnoremap <c-p> :GitFiles<cr>
+
+  command! FZFMru call fzf#run({
+  \ 'source':  reverse(s:all_files()),
+  \ 'sink':    'edit',
+  \ 'options': '-m -x +s',
+  \ 'down':    '40%' })
+
+  function! s:all_files()
+    return extend(
+    \ filter(copy(v:oldfiles),
+    \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+    \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+  endfunction
 end
 
 "---------------------------- coc.nvim -----------------------------------------
