@@ -149,26 +149,22 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Node Version Manager https://github.com/creationix/nvm#installation
 # Made shell startup faster: https://github.com/nvm-sh/nvm/issues/1277#issuecomment-485400399
-export NVM_DIR="$HOME/.nvm"
-declare -a NODE_GLOBALS_NPM=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*'`)
-declare -a NODE_GLOBALS_YARN=(`find $HOME/.yarn/bin -maxdepth 3 -type l -wholename '*/bin/*'`)
-declare -a NODE_GLOBALS=(`echo $NODE_GLOBALS_NPM $NODE_GLOBALS_YARN | xargs -n1 basename | sort | uniq`)
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    export NODE_PATH="$NVM_BIN"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
+# use type -t in bash
+if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'ng' 'webpack' 'simpl')
+  function __init_nvm() {
+    for i in "${__node_commands[@]}"; do unalias $i; done
+    . "$NVM_DIR"/nvm.sh
+    unset __node_commands
+    unset -f __init_nvm
+  }
+  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+fi
 
 # Add yarn to path for globally installed yarn packages
-export PATH="$(yarn global bin):$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
 
 #-------------------------------------------------------------------------------
 #                      Load Aliases and utility functions
