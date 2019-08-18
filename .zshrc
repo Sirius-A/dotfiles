@@ -87,30 +87,6 @@ zstyle ':completion:*:*:cdr:*:*' menu selection
 # fall through to cd if cdr is passed a non-recent dir as an argument
 zstyle ':chpwd:*' recent-dirs-default true
 
-#-------------------------------------------------------------------------------
-#                            Prompt / Powerline
-#-------------------------------------------------------------------------------
-# Setup Prompt / Powerline
-POWERLEVEL9K_MODE='nerdfont-complete'
-DEFAULT_USER='fabio'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="white"
-# Truncate path /usr/share/plasma to /u/s/plasma
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_COLOR_SCHEME='light'
-POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_HIDE_BRANCH_ICON=true
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
 
 #-------------------------------------------------------------------------------
 #                      Setup and load external tools
@@ -123,10 +99,6 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # load autocompletions for various tools
   antigen bundle zsh-users/zsh-completions
 
-  # antigen bundle romkatv/powerlevel10k
-  # powerline10k - Command prompt
-  # POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/romkatv/powerlevel10k
-
   antigen theme romkatv/powerlevel10k
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
@@ -134,6 +106,15 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   antigen apply
 fi
 
+#-------------------------------------------------------------------------------
+#                            Prompt / Powerline
+#-------------------------------------------------------------------------------
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+#-------------------------------------------------------------------------------
+#                            Setup shell environment
+#-------------------------------------------------------------------------------
 # Execute scripts that are only relevant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
@@ -164,9 +145,11 @@ if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
 fi
 
 # Add yarn to path for globally installed yarn packages
+# (`yarn global bin` would be better but slow as it stats the nvm usage)
 export PATH="$PATH:$HOME/.yarn/bin"
 
 #-------------------------------------------------------------------------------
 #                      Load Aliases and utility functions
 #-------------------------------------------------------------------------------
 [ -f ~/.aliases.sh ] && source ~/.aliases.sh
+
