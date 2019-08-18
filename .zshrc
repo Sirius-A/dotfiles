@@ -152,4 +152,3 @@ export PATH="$PATH:$HOME/.yarn/bin"
 #                      Load Aliases and utility functions
 #-------------------------------------------------------------------------------
 [ -f ~/.aliases.sh ] && source ~/.aliases.sh
-
