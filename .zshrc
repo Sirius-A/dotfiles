@@ -130,6 +130,14 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# start the agent automatically and ensure that only one ssh-agent process runs
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+fi
+
 # Node Version Manager https://github.com/creationix/nvm#installation
 # Made shell startup faster: https://github.com/nvm-sh/nvm/issues/1277#issuecomment-485400399
 # use type -t in bash

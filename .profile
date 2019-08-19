@@ -27,3 +27,8 @@ export GDK_DPI_SCALE=0.5
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/chromium
+
+# Start ssh-agent on startup
+# The key is added automatically on first use
+# thanks to "AddKeysToAgent yes" setting in ~/ssh/config
+[ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent)
