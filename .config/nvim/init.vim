@@ -206,8 +206,8 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
 
 " Open NERDTree automatically when vim starts up and no files we specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
+ autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'NERDTree' argv()[0] | wincmd p | ene | endif
 
