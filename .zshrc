@@ -120,6 +120,13 @@ fi
 # Execute scripts that are only relevant for this machine
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
+# Set window title for urxvt and co.
+case "$TERM" in
+xterm*|rxvt*)
+    precmd () {print -Pn "\e]0;%~ - urxvt\a"}
+    ;;
+esac
+
 # Tell rg to read its config file
 export RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
 
