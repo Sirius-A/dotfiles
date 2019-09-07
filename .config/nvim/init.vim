@@ -40,6 +40,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
+Plug 'andrewferrier/vim-fileselector'
 
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
@@ -147,6 +148,7 @@ set background=dark " (Needs to be placed before colorscheme definition)
 colorscheme lucius
 "set termguicolors " needed for base16 theme support
 
+
 " Restore last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -225,20 +227,10 @@ if executable('fzf')
         \ 'ctrl-s': 'split',
         \ 'ctrl-v': 'vsplit'
         \ }
-  nnoremap <c-p> :GitFiles<cr>
 
-  command! FZFMru call fzf#run({
-  \ 'source':  reverse(s:all_files()),
-  \ 'sink':    'edit',
-  \ 'options': '-m -x +s',
-  \ 'down':    '40%' })
-
-  function! s:all_files()
-    return extend(
-    \ filter(copy(v:oldfiles),
-    \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-    \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-  endfunction
+  let g:fileselector_exclude_pattern = ["/.git"] " required as of now https://github.com/andrewferrier/vim-fileselector/issues/12
+  " Fizzy File finder based on FZF
+  nnoremap <silent><c-p> :FileSelectorDisplay<cr>
 end
 
 "---------------------------- coc.nvim -----------------------------------------
