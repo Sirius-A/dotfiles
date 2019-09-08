@@ -34,6 +34,7 @@ Plug 'ipod825/vim-netranger' " NerdTree alternative
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
+Plug 'vimwiki/vimwiki'
 
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -148,7 +149,6 @@ set background=dark " (Needs to be placed before colorscheme definition)
 colorscheme lucius
 "set termguicolors " needed for base16 theme support
 
-
 " Restore last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -208,13 +208,16 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
 
 " Open NERDTree automatically when vim starts up and no files we specified
- autocmd StdinReadPre * let s:std_in=1
+autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/Documents/notes/fhgr/', 'syntax': 'markdown', 'ext': '.md'}]
 
 "----------------------------------fzf------------------------------------------
 if executable('fzf')
