@@ -30,7 +30,6 @@ Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
-Plug 'ipod825/vim-netranger' " NerdTree alternative
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
@@ -41,7 +40,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
-Plug 'andrewferrier/vim-fileselector'
+Plug 'andrewferrier/vim-fileselector' " Fizzy file finder combining MRU and git files (uses FZF)
 
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
