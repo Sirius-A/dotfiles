@@ -1,0 +1,5 @@
+# Also copy selected text to system clipboard
+set selection-clipboard clipboard
+
+# open this file in foxitreader (to annotate it)
+map <C-a> feedkeys ":exec foxitreader %<Return>"
