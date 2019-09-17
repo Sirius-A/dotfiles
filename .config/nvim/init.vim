@@ -33,7 +33,6 @@ Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
-Plug 'vimwiki/vimwiki'
 
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -214,9 +213,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Vimwiki
-let g:vimwiki_list = [{'path': '~/Documents/notes/fhgr/', 'syntax': 'markdown', 'ext': '.md'}]
 
 "----------------------------------fzf------------------------------------------
 if executable('fzf')
