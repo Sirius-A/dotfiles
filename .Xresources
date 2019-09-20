@@ -93,7 +93,7 @@ URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
 URxvt.perl-ext-common: clipboard,font-size
-URxvt.perl-ext: default,url-select,keyboard-select
+URxvt.perl-ext: default,url-select,keyboard-select,matcher
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -101,6 +101,7 @@ URxvt.keyboard-select.clipboard: If true, copy to clipboard too
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.url-select.autocopy: true
+URxvt.url-launcher:       sensible-browser
 ! URxvt.keysym.M-C-c:               perl:clipboard:copy
 ! URxvt.keysym.M-v:                 perl:clipboard:paste
 ! URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
