@@ -77,14 +77,18 @@ IFS=$SAVEIFS
 # open a config file in vim
 fconfig(){
   local files="$HOME/.config/nvim/init.vim
-$HOME/.gitconfig
 $HOME/.config/i3/config
 $HOME/.aliases.sh
 $HOME/.zshrc
+$HOME/.Xresources
+$HOME/.profile
+$HOME/.gitconfig
 $HOME/.ssh/config
 $HOME/.config/i3/i3exit
-$HOME/.Xresources
-$HOME/.tmux.conf"
+$HOME/.config/mimeapps.list
+$HOME/.config/zathura/zathurarc
+$HOME/.tmux.conf
+"
 
   local file=$(echo $files | fzf --height 40% --reverse)
   echo $file
