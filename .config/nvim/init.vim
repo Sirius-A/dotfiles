@@ -39,7 +39,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
-Plug 'andrewferrier/vim-fileselector' " Fizzy file finder combining MRU and git files (uses FZF)
 
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
@@ -226,9 +225,10 @@ if executable('fzf')
         \ 'ctrl-v': 'vsplit'
         \ }
 
-  let g:fileselector_exclude_pattern = ["/.git"] " required as of now https://github.com/andrewferrier/vim-fileselector/issues/12
-  " Fizzy File finder based on FZF
-  nnoremap <silent><c-p> :FileSelectorDisplay<cr>
+  " Fizzy File finder using FZF
+  nnoremap <silent><c-p> :Files<CR>
+
+  nnoremap <silent><leader>b :Buffers<CR>
 end
 
 "---------------------------- coc.nvim -----------------------------------------
