@@ -33,9 +33,9 @@ Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
-
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'ferrine/md-img-paste.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
@@ -51,6 +51,8 @@ Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
 Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
 Plug 'plasticboy/vim-markdown'      " Better Markdown support
+
+Plug 'lervag/vimtex' " Latex support
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'ryanoasis/vim-devicons'
@@ -123,9 +125,6 @@ if has('persistent_undo')
     endif
   endif
 endif
-
-let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
-let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
 
 let mapleader = "\<Space>"
 
@@ -233,14 +232,15 @@ end
 
 "---------------------------- coc.nvim -----------------------------------------
 let g:coc_global_extensions=[
-    \ 'coc-json',
-    \ 'coc-css',
     \ 'coc-angular',
-    \ 'coc-tsserver',
-    \ 'coc-yaml',
-    \ 'coc-tslint-plugin',
+    \ 'coc-css',
     \ 'coc-emmet',
-    \ 'coc-html'
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-tslint-plugin',
+    \ 'coc-tsserver',
+    \ 'coc-vimtex',
+    \ 'coc-yaml',
 \]
 
 " Highlight symbol under cursor on CursorHold
@@ -253,6 +253,20 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+
+" leader p in Markdown pastes images
+autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+let g:mdip_imgdir = 'images'
+
+let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
+let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
+
+" Latex (vimtex)
+let g:vimtex_compiler_progname = 'nvr' " Fix for neovim (needs neovim-remote to be installed)
+                                       " See also: https://github.com/lervag/vimtex/wiki/introduction#neovim
+let g:tex_flavor = "latex" " Tell vim that an empty .tex file is LaTeX
+let g:vimtex_latexmk_continuous=1
 
 "-------------------------------------------------------------------------------
 "                             Command Mappings
