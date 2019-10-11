@@ -259,7 +259,12 @@ autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angu
 autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " there are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = 'images'
-autocmd FileType markdown set spell
+
+" Turn spell check on automatically for Markdown and latex files
+augroup enable_spellcheck
+    autocmd!
+    autocmd FileType tex,latex,context,plaintex,markdown set spell
+augroup END
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
@@ -390,6 +395,8 @@ vmap <leader>.  <Plug>(coc-codeaction-selected)
 nmap <leader>.  <Plug>(coc-codeaction-selected)
 " Remap to do codeAction of current line
 nmap <leader>ca  <Plug>(coc-codeaction)
+" Fix autofix problem of current line (quickfix)
+nmap <leader>cc  <Plug>(coc-fix-current)
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -408,6 +415,7 @@ nnoremap <silent> <leader>p  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
 
 " Do default action for next item.
 nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
