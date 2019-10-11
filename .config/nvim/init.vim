@@ -40,6 +40,7 @@ Plug 'ferrine/md-img-paste.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
 
+
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
 Plug 'sheerun/vim-polyglot'         " A collection of language packs
@@ -258,6 +259,7 @@ autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angu
 autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " there are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = 'images'
+autocmd FileType markdown set spell
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
@@ -328,6 +330,7 @@ nnoremap <leader>q :bp<cr>:bd #<cr>
 "Toggle spellcheck
 nnoremap <F7> :setlocal spell! spell?<CR>
 inoremap <F7> <C-o>::setlocal spell! spell?<CR>
+set spelllang=de,en
 
 " Fix lint errors
 nnoremap <A-f> :ALEFix<CR>
@@ -339,7 +342,7 @@ nnoremap XX "_dd
 " Select last pasted text
 nmap vp `[v`]
 
-" Auto completion seletion using ctrl + movement keys
+" Auto completion selection using ctrl + movement keys
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
