@@ -52,7 +52,7 @@ Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
 Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
 Plug 'plasticboy/vim-markdown'      " Better Markdown support
-
+Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
 Plug 'lervag/vimtex' " Latex support
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
@@ -306,6 +306,10 @@ CommandAlias wQ! wq!
 "-------------------------------------------------------------------------------
 "                              Key Mappings
 "-------------------------------------------------------------------------------
+" j and k move visual line
+nnoremap gj j
+nnoremap gk k
+
 " Easier Split Navigation via Ctrl + <Vim direction>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
