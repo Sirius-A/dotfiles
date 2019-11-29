@@ -199,6 +199,15 @@ endif
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
+
+"--------------------------------Startify---------------------------------------
+let g:startify_lists = [
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'files',     'header': ['   MRU (global)']   },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
+
+
 "-------------------------------NERDTree----------------------------------------
 " let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
 let NERDTreeQuitOnOpen = 1
@@ -215,19 +224,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "----------------------------------fzf------------------------------------------
 if executable('fzf')
-  "Hide statusline when fzf opens a :terminal buffer
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
   let g:fzf_action = {
         \ 'ctrl-s': 'split',
         \ 'ctrl-v': 'vsplit'
         \ }
 
-  " Fizzy File finder using FZF
-  nnoremap <silent><c-p> :Files<CR>
-
+  nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
   nnoremap <silent><leader>b :Buffers<CR>
 end
 
