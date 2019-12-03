@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -105,6 +112,9 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
 
+  # FZF git integration
+  antigen bundle 'wfxr/forgit'
+
   antigen apply
 fi
 
@@ -147,12 +157,21 @@ fi
 
 # Node Version Manager https://github.com/creationix/nvm#installation
 # Made shell startup faster: https://github.com/nvm-sh/nvm/issues/1277#issuecomment-485400399
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# use type -t in bash
+if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'ng' 'webpack' 'simpl')
+  function __init_nvm() {
+    for i in "${__node_commands[@]}"; do unalias $i; done
+    . "$NVM_DIR"/nvm.sh
+    unset __node_commands
+    unset -f __init_nvm
+  }
+  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+fi
 # add our default nvm node (`nvm alias default 10.16.0`) to path without loading nvm
 export PATH="$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/bin:$PATH"
-# alias `nvm` to this one liner lazy load of the normal nvm script
-alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
 
 # Add yarn to path for globally installed yarn packages
 # (`yarn global bin` would be better but slow as it stats the nvm usage)
