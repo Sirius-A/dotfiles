@@ -5,9 +5,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Editor Settings
 Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-abolish'    " Case adaptiv substitutions (and others)
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
-Plug 'tpope/vim-repeat'     " Allows plugins to use repat the whole operation with '.'
+Plug 'tpope/vim-repeat'     " Allows plugins to use repeat the whole operation with '.'
 Plug 'wincent/terminus' " Improve Vim inside the terminal
 Plug 'wincent/ferret'   " Better (grep) find and replace
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
@@ -240,10 +241,12 @@ let g:coc_global_extensions=[
     \ 'coc-emmet',
     \ 'coc-html',
     \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-snippets',
     \ 'coc-tslint-plugin',
     \ 'coc-tsserver',
     \ 'coc-vimtex',
-    \ 'coc-yaml',
+    \ 'coc-yaml'
 \]
 
 " Highlight symbol under cursor on CursorHold
