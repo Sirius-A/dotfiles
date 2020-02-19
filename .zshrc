@@ -47,8 +47,10 @@ setopt correct              # Command auto-correction
 setopt correctall           # Argument auto-correction
 setopt interactivecomments  # allow comments, even in interactive shells
 setopt appendhistory        # Append history to the history file (no overwriting)
-setopt inc_append_history   # Appends every command to the history file once it is executed
-setopt share_history        # Reloads the history whenever you use it
+# setopt inc_append_history   # Appends every command to the history file once it is executed
+# setopt share_history        # Reloads the history whenever you use it
+setopt HIST_IGNORE_DUPS     # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate.
 
 export EDITOR='nvim'
 
@@ -112,11 +114,14 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   antigen bundle 'wfxr/forgit'
 
   antigen theme romkatv/powerlevel10k
+
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
 
   # FZF git integration
   antigen bundle 'wfxr/forgit'
+
+  antigen bundle 'zdharma/zsh-diff-so-fancy'
 
   antigen apply
 fi
