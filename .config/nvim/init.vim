@@ -53,6 +53,7 @@ Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
 Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
 Plug 'plasticboy/vim-markdown'      " Better Markdown support
+Plug 'SidOfc/mkdx' " Markdown goodies
 Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
 Plug 'lervag/vimtex' " Latex support
 
