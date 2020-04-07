@@ -113,9 +113,6 @@ if [ -f ~/.config/zsh/antigen.zsh ]; then
   # Auto Suggestions
   antigen bundle zsh-users/zsh-autosuggestions
 
-  # FZF git integration
-  antigen bundle 'wfxr/forgit'
-
   antigen bundle 'zdharma/zsh-diff-so-fancy'
 
   antigen apply
