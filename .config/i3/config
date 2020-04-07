@@ -39,6 +39,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
+bindsym $mod+Shift+e exec rofimoji
 # switch to specific window
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 # launch categorized menu
