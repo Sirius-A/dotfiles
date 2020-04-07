@@ -97,7 +97,7 @@ URxvt.perl-ext: default,url-select,keyboard-select,matcher
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
-URxvt.keyboard-select.clipboard: If true, copy to clipboard too
+URxvt.keyboard-select.clipboard: true
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.url-select.autocopy: true
