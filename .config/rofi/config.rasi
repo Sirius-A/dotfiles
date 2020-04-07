@@ -4,5 +4,9 @@ configuration {
   show-icons:         true;
   icon-theme:         "Papirus";
   font: "Inconsolata 36";
+  kb-accept-entry: "Control+m,Return,KP_Enter";
+  kb-row-down: "Down,Control+n,Control+j";
+  kb-row-up: "Up,Control+p,Control+k";
+  kb-remove-to-eol: "Control+Shift+k";
 }
 @import "/usr/share/rofi/themes/Arc-Dark.rasi"
