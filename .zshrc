@@ -32,11 +32,6 @@ zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
 
-# Start ssh-agent on startup
-# The key is added automatically on first use
-# thanks to "AddKeysToAgent yes" setting in ~/ssh/config
-[ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent) 1> /dev/null
-
 #------------------------------------------------------------------------------
 #                               Options
 #------------------------------------------------------------------------------
@@ -141,9 +136,6 @@ fi
 
 #-------------------------------------------------------------------------------
 #                            Setup shell environment
-#-------------------------------------------------------------------------------
-# Execute scripts that are only relevant for this machine
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # Set window title for urxvt and co.
 case "$TERM" in
