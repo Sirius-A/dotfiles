@@ -1,0 +1,8 @@
+/** Configured For Applets **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  font: "Inconsolata 36";
+}
+@import "/usr/share/rofi/themes/Arc-Dark.rasi"
