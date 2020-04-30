@@ -15,6 +15,7 @@ Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also add
 Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
 Plug 'simeji/winresizer' " Resize window mode via CTRL + e
 Plug 'wellle/targets.vim' " Additional text objects (allows ci[ for example)
+Plug 'wsdjeg/vim-fetch' " Make vim understand my-file:80:4 to jump to line 80
 
 " Look and Feel
 Plug 'mhinz/vim-janah' " Colorscheme
@@ -246,6 +247,7 @@ let g:coc_global_extensions=[
     \ 'coc-lists',
     \ 'coc-markdownlint',
     \ 'coc-snippets',
+    \ 'coc-stylelint',
     \ 'coc-tslint-plugin',
     \ 'coc-tsserver',
     \ 'coc-vimtex',
