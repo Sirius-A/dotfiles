@@ -143,8 +143,9 @@ zinit light-mode for \
 zinit for \
   light-mode zsh-users/zsh-autosuggestions \
   light-mode wfxr/forgit \
-  light-mode zdharma/zsh-diff-so-fancy\
-  light-mode zsh-users/zsh-completions
+  light-mode zdharma/zsh-diff-so-fancy \
+  light-mode zsh-users/zsh-completions \
+  light-mode kazhala/dotbare
 
 zinit as"depth=1" for \
   light-mode romkatv/powerlevel10k
