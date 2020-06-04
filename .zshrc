@@ -99,24 +99,56 @@ zstyle ':chpwd:*' recent-dirs-default true
 #-------------------------------------------------------------------------------
 
 # Antigen / Plugins
-if [ -f ~/.config/zsh/antigen.zsh ]; then
-  source ~/.config/zsh/antigen.zsh
+# if [ -f ~/.config/zsh/antigen.zsh ]; then
+#   source ~/.config/zsh/antigen.zsh
 
-  # load autocompletions for various tools
-  antigen bundle zsh-users/zsh-completions
+#   # load autocompletions for various tools
+#   antigen bundle zsh-users/zsh-completions
 
-  # FZF aliases for git
-  antigen bundle 'wfxr/forgit'
+#   # FZF aliases for git
+#   antigen bundle 'wfxr/forgit'
 
-  antigen theme romkatv/powerlevel10k
+#   antigen theme romkatv/powerlevel10k
 
-  # Auto Suggestions
-  antigen bundle zsh-users/zsh-autosuggestions
+#   # Auto Suggestions
+#   antigen bundle zsh-users/zsh-autosuggestions
 
-  antigen bundle 'zdharma/zsh-diff-so-fancy'
+#   antigen bundle 'zdharma/zsh-diff-so-fancy'
 
-  antigen apply
+#   antigen apply
+# fi
+
+# Install and update zinit.zsh
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+  zinit-zsh/z-a-as-monitor \
+  zinit-zsh/z-a-patch-dl \
+  zinit-zsh/z-a-bin-gem-node
+# End of Zinit's installer chunk
+
+# Zinit plugins
+zinit for \
+  light-mode zsh-users/zsh-autosuggestions \
+  light-mode wfxr/forgit \
+  light-mode zdharma/zsh-diff-so-fancy\
+  light-mode zsh-users/zsh-completions
+
+zinit as"depth=1" for \
+  light-mode romkatv/powerlevel10k
+
 
 #-------------------------------------------------------------------------------
 #                            Prompt / Powerline
@@ -185,3 +217,4 @@ export PATH="$PATH:$HOME/.yarn/bin"
 #                      Load Aliases and utility functions
 #-------------------------------------------------------------------------------
 [ -f ~/.aliases.sh ] && source ~/.aliases.sh
+
