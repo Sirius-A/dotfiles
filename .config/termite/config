@@ -50,11 +50,11 @@ hyperlinks = false
 #foreground_bold = #ffffff
 #background = #3f3f3f
 
-# 20% background transparency (requires a compositor)
-#background = rgba(63, 63, 63, 0.8)
+# 15% background transparency (requires a compositor)
+background = rgba(40, 40, 40, 0.85)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+# highlight = #2f2f2f
 
 # Colors from color0 to color254 can be set
 ## Default
@@ -76,17 +76,17 @@ highlight = #2f2f2f
 # color15 = #ffffff
 
 ## Hybrid theme
-## From http://terminal.sexy/#HR8hxcjGKCoupUJCjJRA3pNfX4GdhWePXo2HcHiANztBzGZmtb1o8MZ0gaK-spS7ir63xcjG
+## Source: http://terminal.sexy/#HR8hxcjGKCoupUJCjJRA3pNfX4GdhWePXo2HcHiANztBzGZmtb1o8MZ0gaK-spS7ir63bW5t
 [colors]
 # special
 foreground      = #c5c8c6
 foreground_bold = #c5c8c6
 cursor          = #6d6d6d
-background      = #1d1f21
+# background      = #1d1f21 ## set above w/ transparency
 
 # black
 color0  = #282a2e
-color8  = #373b41
+color8  = #4e545d
 
 # red
 color1  = #a54242
