@@ -81,7 +81,7 @@ highlight = #2f2f2f
 # special
 foreground      = #c5c8c6
 foreground_bold = #c5c8c6
-cursor          = #c5c8c6
+cursor          = #6d6d6d
 background      = #1d1f21
 
 # black
