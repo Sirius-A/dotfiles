@@ -20,10 +20,10 @@ Plug 'wsdjeg/vim-fetch' " Make vim understand my-file:80:4 to jump to line 80
 " Look and Feel
 Plug 'mhinz/vim-janah' " Colorscheme
 Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
-Plug 'chriskempson/base16-vim' " Base 16 Colorschemes http://chriskempson.com/projects/base16/
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'jacoborus/tender.vim'
 
 " Extensions
 Plug 'tpope/vim-fugitive' " Git utils
@@ -54,7 +54,7 @@ Plug 'sbdchd/neoformat'             " Auto formatting
 Plug 'ap/vim-css-color'             " Show colors in css files
 Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
 Plug 'plasticboy/vim-markdown'      " Better Markdown support
-Plug 'SidOfc/mkdx' " Markdown goodies
+" Plug 'SidOfc/mkdx' " Markdown goodies
 Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
 Plug 'lervag/vimtex' " Latex support
 
@@ -134,7 +134,7 @@ let mapleader = "\<Space>"
 
 " Theme settings
 syntax on
-let g:airline_theme = "wombat"
+let g:airline_theme = "tender"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -146,8 +146,9 @@ set background=dark " (Needs to be placed before colorscheme definition)
 "colorscheme hybrid_reverse
 " autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
 " colorscheme base16-tomorrow-night
-colorscheme lucius
-"set termguicolors " needed for base16 theme support
+" colorscheme lucius
+" set termguicolors " needed for base16 theme support
+colorscheme tender
 
 " Restore last position when reopening a file
 if has("autocmd")
@@ -279,6 +280,7 @@ augroup END
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
 
+let g:vim_markdown_folding_level = 3
 " Latex (vimtex)
 let g:vimtex_compiler_progname = 'nvr' " Fix for neovim (needs neovim-remote to be installed)
                                        " See also: https://github.com/lervag/vimtex/wiki/introduction#neovim
