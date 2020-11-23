@@ -39,14 +39,14 @@
   get_url:
     url: https://raw.githubusercontent.com/Sirius-A/dotfiles/master/.config/nvim/init.vim
     dest: "{{ neovim_config_file }}"
-    mode: 0o700
+    mode: 0o644
     owner: "{{ neovim_user_id }}"
+    force: true
 
-- debug: msg="the value of foo.txt is {{lookup('file', '/home/fabio/.config/nvim/init.vim') }}"
-
-- name: Install plugins via vim-plug
-  command: nvim +PlugInstall +qall
-  when: vim_install_plugins
+# TODO: make this work
+# - name: Install plugins via vim-plug
+#   command: nvim +PlugInstall +qall
+#   when: vim_install_plugins
 
 
 
