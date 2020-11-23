@@ -18,6 +18,7 @@
     dest: "{{ neovim_autoload_dir }}/plug.vim"
     mode: 0o600
     owner: "{{ neovim_user_id }}"
+    # force: true
 
 - name: Create config base dir
   file:
@@ -34,19 +35,14 @@
     mode: 0o700
     owner: "{{ neovim_user_id }}"
 
-# TODO: find a way to refernce local file
+# TODO: find a way to reference local files
 - name: copy config
   get_url:
     url: https://raw.githubusercontent.com/Sirius-A/dotfiles/master/.config/nvim/init.vim
     dest: "{{ neovim_config_file }}"
     mode: 0o644
     owner: "{{ neovim_user_id }}"
-    force: true
 
-# TODO: make this work
-# - name: Install plugins via vim-plug
-#   command: nvim +PlugInstall +qall
-#   when: vim_install_plugins
-
-
+- name: Install plugins via vim-plug
+  command: vim +PlugInstall +qa
 
