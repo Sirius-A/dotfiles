@@ -1,0 +1,4 @@
+- name: Install neovim with pacman
+  pacman: name=neovim state=present
+  become_method: sudo
+  become: true
