@@ -4,3 +4,6 @@
     - role: vim
       tags:
         - vim
+    - role: full
+      tags:
+        - full

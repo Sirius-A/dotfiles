@@ -14,8 +14,10 @@
       - flameshot
       - termite
       - zathura
+      - zathura-pdf-mupdf
+      - ripgrep
       - base-devel # dependency for yay
-    state=present
+    state: present
   become_method: sudo
   become: true
 
@@ -27,7 +29,6 @@
     mode: 0o744
     owner: "{{ full_user_id }}"
 
-
 - name: Clone yay repo
   git:
     repo: https://aur.archlinux.org/yay.git
@@ -37,5 +38,4 @@
   command: makepkg -si {{var_yay_dir}}
   become: true
   become_method: sudo
-
 

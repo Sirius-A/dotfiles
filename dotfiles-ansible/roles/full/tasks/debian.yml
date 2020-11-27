@@ -1,5 +1,22 @@
-- name: Install neovim with apt
-  apt: name=neovim state=present
+- name: Install apt packages
+  apt:
+    name:
+      - zsh
+      - dmenu
+      - picom
+      - ripgrep
+      - zathura
+      - ranger
+      - nitrogen
+      - flameshot
+      - rofi
+    state: present
   become_method: sudo
   become: true
+
+# - name: Install snaps
+#   snap:
+#       name:
+#         - termite
+#       state: present
 

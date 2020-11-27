@@ -4,4 +4,6 @@
 - include: arch.yml
   when: ansible_os_family == "Arch"
 
+# Change shell to zsh
 
+# Setup nvm
