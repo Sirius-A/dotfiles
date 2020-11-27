@@ -35,7 +35,7 @@
     mode: 0o700
     owner: "{{ neovim_user_id }}"
 
-# TODO: find a way to reference local files
+# TODO: find a way to reference local files form base folder
 - name: copy config
   get_url:
     url: https://raw.githubusercontent.com/Sirius-A/dotfiles/master/.config/nvim/init.vim

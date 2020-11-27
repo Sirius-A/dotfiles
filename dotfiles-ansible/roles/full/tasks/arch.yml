@@ -1,0 +1,41 @@
+- var_yay_dir: "{{full_sources_dir}}/yay/"
+
+- name: Install pacman packages
+  pacman:
+    name:
+      - zsh
+      - i3-gaps
+      - i3status
+      - dmenu
+      - rofi
+      - nitrogen
+      - picom
+      - ranger
+      - flameshot
+      - termite
+      - zathura
+      - base-devel # dependency for yay
+    state=present
+  become_method: sudo
+  become: true
+
+- name: create dir for software sources
+  file:
+    path: "{{ full_sources_dir }}"
+    state: directory
+    recurse: yes
+    mode: 0o744
+    owner: "{{ full_user_id }}"
+
+
+- name: Clone yay repo
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: var_yay_dir
+
+- name: install yay
+  command: makepkg -si {{var_yay_dir}}
+  become: true
+  become_method: sudo
+
+
