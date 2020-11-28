@@ -2,23 +2,16 @@
 
 > *Guess I'm joining the club as well* ¯\\\_(ツ)_/¯
 
-## Requirements / Tools Used
-- Neovim (or Vim8 with python support): https://github.com/neovim/neovim/wiki/Installing-Neovim
-  - Plugin manager:  vim-plug https://github.com/junegunn/vim-plug#installation
-  - Python3 support https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
-- Zsh https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH
-  - Plugin manager: Antigen https://github.com/zsh-users/antigen#installation
-- i3-gaps:
-  - Debian based distros can use the `ppa` from here: https://github.com/regolith-linux/speed-ricer 
-- A nerd font of choice: https://github.com/ryanoasis/nerd-fonts
-- Terminal Emulator for Win10 WSL: https://github.com/mintty/wsltty#installation-from-this-repository
-
 ## Usage
 
 This project follows the approach of using a [`bare git repo`](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)
 to manage all config files. No symlinks or copying of files required. Another benefit of a bare repo is that it does not create a `.git` folder and therefore does not interfere with any other git projects in the home directory. More info can be found in this [Atlassian blog post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
-A Git alias (`config`) is used to manage all configuration files from the `$HOME` directory. By default all files which were not expicitly added are not shown in the `config status`.
+A Git alias (`config`) is used to manage all configuration files from the
+`$HOME` directory. By default all files which were not explicitly added are not
+shown in the `config status`.
+
+[Ansible](https://www.ansible.com) is used to install the required Software in a modular way.
 
 ### Install / Setup
 
@@ -29,17 +22,17 @@ git clone --bare git@github.com:Sirius-A/dotfiles.git ~/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
 
-# Setup the configuration files form this repo
+# Setup the configuration files from this repo
 config checkout
+
+# Install all the required software for your usecase (remove unneeded tags)
+cd dotfiles-ansible
+ansible-playbook -i hosts dotfiles.yml --ask-become-pass --tags=shell,vim,desktop
 
 # Install tmux plugins
 tmux
 <prefix> + I # (Captial I)
 
-# Intall Vim plugins
-# (Also installs fzf for the system)
-nvim
-:PlugInstall
 ```
 
 ### Update / Add Configs
