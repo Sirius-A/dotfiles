@@ -144,7 +144,7 @@ zinit for \
   light-mode zsh-users/zsh-autosuggestions \
   light-mode wfxr/forgit \
   light-mode zdharma/zsh-diff-so-fancy \
-  light-mode zsh-users/zsh-completions \
+  light-mode clarketm/zsh-completions \
   light-mode kazhala/dotbare
 
 zinit as"depth=1" for \
@@ -192,6 +192,11 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
     eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
 fi
 
+#-------------------------------------------------------------------------------
+#                      Load Aliases and utility functions
+#-------------------------------------------------------------------------------
+[ -f ~/.aliases.sh ] && source ~/.aliases.sh
+
 # Node Version Manager https://github.com/creationix/nvm#installation
 # Made shell startup faster: https://github.com/nvm-sh/nvm/issues/1277#issuecomment-485400399
 # use type -t in bash
@@ -207,6 +212,8 @@ if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
   }
   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
 fi
+
+
 # add our default nvm node (`nvm alias default 10.16.0`) to path without loading nvm
 export PATH="$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/bin:$PATH"
 
@@ -214,8 +221,4 @@ export PATH="$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/bin:$PATH"
 # (`yarn global bin` would be better but slow as it stats the nvm usage)
 export PATH="$PATH:$HOME/.yarn/bin"
 
-#-------------------------------------------------------------------------------
-#                      Load Aliases and utility functions
-#-------------------------------------------------------------------------------
-[ -f ~/.aliases.sh ] && source ~/.aliases.sh
 

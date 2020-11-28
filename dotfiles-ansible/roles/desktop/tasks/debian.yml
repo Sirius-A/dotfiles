@@ -1,0 +1,19 @@
+- name: Install apt packages
+  apt:
+    name:
+      - dmenu
+      - compton
+      - zathura
+      - nitrogen
+      - flameshot
+      - rofi
+    state: present
+  become_method: sudo
+  become: true
+
+- name: Install snaps
+  snap:
+      name:
+        - termite
+      state: present
+

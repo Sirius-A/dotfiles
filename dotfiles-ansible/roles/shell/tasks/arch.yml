@@ -1,0 +1,35 @@
+- name: Install pacman packages
+  pacman:
+    name:
+      - curl
+      - jq
+      - ranger
+      - ripgrep
+      - xclip
+      - yarn
+      - zathura
+      - zathura-pdf-mupdf
+      - zsh
+      - base-devel # dependency for yay
+    state: present
+  become_method: sudo
+  become: true
+
+- name: create dir for software sources
+  file:
+    path: "{{ full_sources_dir }}"
+    state: directory
+    recurse: yes
+    mode: 0o744
+    owner: "{{ full_user_id }}"
+
+- name: Clone yay repo
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: "{full_sources_dir}}/yay/"
+
+- name: install yay
+  command: makepkg -si {full_sources_dir}}/yay/
+  become: true
+  become_method: sudo
+

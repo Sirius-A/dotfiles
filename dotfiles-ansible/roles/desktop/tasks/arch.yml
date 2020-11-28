@@ -1,0 +1,15 @@
+- name: Install pacman packages
+  pacman:
+    name:
+      - i3-gaps
+      - i3status
+      - dmenu
+      - rofi
+      - nitrogen
+      - picom
+      - flameshot
+      - termite
+    state: present
+  become_method: sudo
+  become: true
+
