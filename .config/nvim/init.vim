@@ -18,12 +18,12 @@ Plug 'wellle/targets.vim' " Additional text objects (allows ci[ for example)
 Plug 'wsdjeg/vim-fetch' " Make vim understand my-file:80:4 to jump to line 80
 
 " Look and Feel
-Plug 'mhinz/vim-janah' " Colorscheme
-Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jonathanfilip/vim-lucius'
 Plug 'jacoborus/tender.vim'
+" Plug 'mhinz/vim-janah' " Colorscheme
+" Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'jonathanfilip/vim-lucius'
 
 " Extensions
 Plug 'tpope/vim-fugitive' " Git utils
@@ -35,13 +35,12 @@ Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
-" markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' } " markdown preview
 Plug 'ferrine/md-img-paste.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
 
 " Syntaxes & Language tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
@@ -59,6 +58,7 @@ Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
 Plug 'lervag/vimtex' " Latex support
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
@@ -237,26 +237,6 @@ if executable('fzf')
   nnoremap <silent><leader>b :Buffers<CR>
 end
 
-"---------------------------- coc.nvim -----------------------------------------
-let g:coc_global_extensions=[
-    \ 'coc-angular',
-    \ 'coc-css',
-    \ 'coc-emmet',
-    \ 'coc-eslint',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-lists',
-    \ 'coc-markdownlint',
-    \ 'coc-snippets',
-    \ 'coc-stylelint',
-    \ 'coc-tslint-plugin',
-    \ 'coc-tsserver',
-    \ 'coc-vimtex',
-    \ 'coc-yaml'
-\]
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 "-------------------------------------------------------------------------------
 "                        	Syntax and Languages
@@ -268,7 +248,6 @@ autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angu
 
 " leader p in Markdown pastes images
 autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-" there are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = 'images'
 
 " Turn spell check on automatically for Markdown and latex files
@@ -367,6 +346,25 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
 inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
 "---------------------------- coc.nvim -----------------------------------------
+let g:coc_global_extensions=[
+    \ 'coc-angular',
+    \ 'coc-css',
+    \ 'coc-emmet',
+    \ 'coc-eslint',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-markdownlint',
+    \ 'coc-snippets',
+    \ 'coc-stylelint',
+    \ 'coc-tslint-plugin',
+    \ 'coc-tsserver',
+    \ 'coc-vimtex',
+    \ 'coc-yaml'
+\]
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -429,30 +427,10 @@ nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-
 " Do default action for next item.
 nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
-
-" FZF Preview
-nmap <Leader>f [fzf-p]
-xmap <Leader>f [fzf-p]
-
-nnoremap <silent> [fzf-p]p     :<C-u>FzfPreviewFromResources project_mru git<CR>
-nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatus<CR>
-nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffers<CR>
-nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
-nnoremap <silent> [fzf-p]o     :<C-u>FzfPreviewFromResources buffer project_mru<CR>
-nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumps<CR>
-nnoremap <silent> [fzf-p]g;    :<C-u>FzfPreviewChanges<CR>
-nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'"<CR>
-nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
-nnoremap          [fzf-p]gr    :<C-u>FzfPreviewProjectGrep<Space>
-xnoremap          [fzf-p]gr    "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-nnoremap <silent> [fzf-p]t     :<C-u>FzfPreviewBufferTags<CR>
-nnoremap <silent> [fzf-p]q     :<C-u>FzfPreviewQuickFix<CR>
-nnoremap <silent> [fzf-p]l     :<C-u>FzfPreviewLocationList<CR>
 
 " Open / close NERDTree
 map <C-n> :NERDTreeToggle<CR>
