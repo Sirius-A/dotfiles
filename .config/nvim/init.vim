@@ -39,7 +39,7 @@ Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'ferrine/md-img-paste.vim'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Will clone fzf in ~/.fzf and run install script
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Will clone fzf in ~/.fzf and run install script
 Plug 'junegunn/fzf.vim'
 Plug 'yuki-ycino/fzf-preview.vim'
 
