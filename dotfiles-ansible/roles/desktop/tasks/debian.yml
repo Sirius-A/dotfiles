@@ -1,12 +1,9 @@
 - name: Install apt packages
   apt:
     name:
-      - zsh
       - dmenu
-      - picom
-      - ripgrep
+      - compton
       - zathura
-      - ranger
       - nitrogen
       - flameshot
       - rofi
@@ -14,9 +11,9 @@
   become_method: sudo
   become: true
 
-# - name: Install snaps
-#   snap:
-#       name:
-#         - termite
-#       state: present
+- name: Install snaps
+  snap:
+      name:
+        - termite
+      state: present
 

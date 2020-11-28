@@ -5,5 +5,9 @@
   when: ansible_os_family == "Arch"
 
 # Change shell to zsh
-
+- name: change user shell to zsh
+  become: yes
+  user:
+    name: "{{ full_user_id }}"
+    shell: /bin/zsh
 # Setup nvm

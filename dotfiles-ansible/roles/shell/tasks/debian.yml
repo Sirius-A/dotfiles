@@ -1,0 +1,9 @@
+- name: Install apt packages
+  apt:
+    name:
+      - zsh
+      - ripgrep
+      - ranger
+    state: present
+  become_method: sudo
+  become: true
