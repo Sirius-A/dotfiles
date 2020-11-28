@@ -1,10 +1,12 @@
 - name: Install apt packages
   apt:
     name:
-      - zsh
-      - ripgrep
+      - curl
       - ranger
+      - ripgrep
       - xclip
+      - yarn
+      - zsh
     state: present
   become_method: sudo
   become: true

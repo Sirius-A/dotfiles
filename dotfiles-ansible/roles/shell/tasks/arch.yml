@@ -1,12 +1,14 @@
 - name: Install pacman packages
   pacman:
     name:
-      - zsh
+      - curl
       - ranger
-      - zathura
-      - zathura-pdf-mupdf
       - ripgrep
       - xclip
+      - yarn
+      - zathura
+      - zathura-pdf-mupdf
+      - zsh
       - base-devel # dependency for yay
     state: present
   become_method: sudo

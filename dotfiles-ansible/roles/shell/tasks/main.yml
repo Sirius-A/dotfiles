@@ -4,10 +4,14 @@
 - import_tasks: arch.yml
   when: ansible_os_family == "Arch"
 
-# Change shell to zsh
 - name: change user shell to zsh
   become: yes
   user:
     name: "{{ full_user_id }}"
     shell: /bin/zsh
-# Setup nvm
+
+- name: install node version manager
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
