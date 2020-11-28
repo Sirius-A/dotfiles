@@ -2,11 +2,21 @@
   apt:
     name:
       - curl
+      - jq
       - ranger
       - ripgrep
       - xclip
-      - yarn
       - zsh
     state: present
   become_method: sudo
   become: true
+
+- name: Install yarn (without installing node)
+  apt:
+    name:
+      - yarn
+    state: present
+    install_recommends: false
+  become_method: sudo
+  become: true
+

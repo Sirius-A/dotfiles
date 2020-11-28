@@ -2,6 +2,7 @@
   pacman:
     name:
       - curl
+      - jq
       - ranger
       - ripgrep
       - xclip

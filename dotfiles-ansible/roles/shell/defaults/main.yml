@@ -1,8 +1,11 @@
-# Directory for tools which have to be built from source
-full_sources_dir: "{{ ansible_user_dir }}/sources/"
-
 # User for whom neovim shall be configured
-full_user_id: "{{ ansible_user_id }}"
+shell_user_id: "{{ ansible_user_id }}"
 
 # Home directory of the user for whom neovim shall be configured
-full_user_dir: "{{ ansible_env.HOME }}"
+shell_user_dir: "{{ ansible_env.HOME }}"
+
+# Directory for tools which have to be built from source
+shell_sources_dir: "{{ ansible_user_dir }}/sources/"
+
+# nvm install directory
+shell_nvm_dir: "{{ shell_user_dir }}/.nvm/"

@@ -7,11 +7,18 @@
 - name: change user shell to zsh
   become: yes
   user:
-    name: "{{ full_user_id }}"
+    name: "{{ shell_user_id }}"
     shell: /bin/zsh
 
 - name: install node version manager
   shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    creates: "{{ shell_nvm_dir }}/nvm.sh"
+    warn: false # curl is fine to be used here. Our main task is to run the shell script
+
+- name: install Node.js LTS via nvm
+  shell: >
+    /bin/zsh -c "source ~/.nvm/nvm.sh && nvm install --lts && nvm alias default 'lts/*' && nvm use default"
+    creates: "{{ shell_nvm_dir }}/alias"
+
