@@ -4,6 +4,7 @@
       - zsh
       - ripgrep
       - ranger
+      - xclip
     state: present
   become_method: sudo
   become: true

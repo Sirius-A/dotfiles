@@ -1,7 +1,7 @@
 # Install for specific OS
-- include: debian.yml
+- import_tasks: debian.yml
   when: ansible_os_family == "Debian"
-- include: arch.yml
+- import_tasks: arch.yml
   when: ansible_os_family == "Arch"
 
 

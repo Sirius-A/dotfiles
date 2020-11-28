@@ -6,6 +6,7 @@
       - zathura
       - zathura-pdf-mupdf
       - ripgrep
+      - xclip
       - base-devel # dependency for yay
     state: present
   become_method: sudo

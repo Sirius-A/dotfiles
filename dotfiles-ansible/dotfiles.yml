@@ -4,6 +4,9 @@
     - role: vim
       tags:
         - vim
-    - role: full
+    - role: shell
       tags:
-        - full
+        - shell
+    - role: desktop
+      tags:
+        - desktop
