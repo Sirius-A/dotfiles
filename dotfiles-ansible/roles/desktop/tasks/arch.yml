@@ -4,7 +4,6 @@
       - autorandr
       - i3-gaps
       - i3status
-      - dmenu
       - rofi
       - nitrogen
       - picom
