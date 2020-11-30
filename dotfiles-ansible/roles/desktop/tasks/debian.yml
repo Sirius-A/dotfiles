@@ -1,6 +1,7 @@
 - name: Install apt packages
   apt:
     name:
+      - autornadr
       - dmenu
       - compton
       - zathura

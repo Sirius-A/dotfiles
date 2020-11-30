@@ -1,6 +1,7 @@
 - name: Install pacman packages
   pacman:
     name:
+      - autorandr
       - i3-gaps
       - i3status
       - dmenu
