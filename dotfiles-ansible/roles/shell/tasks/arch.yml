@@ -17,19 +17,19 @@
 
 - name: create dir for software sources
   file:
-    path: "{{ full_sources_dir }}"
+    path: "{{ shell_sources_dir }}"
     state: directory
     recurse: yes
     mode: 0o744
-    owner: "{{ full_user_id }}"
+    owner: "{{ shell_user_id }}"
 
 - name: Clone yay repo
   git:
     repo: https://aur.archlinux.org/yay.git
-    dest: "{full_sources_dir}}/yay/"
+    dest: "{{ shell_sources_dir }}/yay/"
 
 - name: install yay
-  command: makepkg -si {full_sources_dir}}/yay/
+  command: makepkg -si {shell_sources_dir}}/yay/
   become: true
   become_method: sudo
 
