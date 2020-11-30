@@ -30,6 +30,5 @@
 
 - name: install yay
   command: makepkg -si {shell_sources_dir}}/yay/
-  become: true
-  become_method: sudo
+  become: false
 
