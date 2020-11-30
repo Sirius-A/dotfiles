@@ -29,10 +29,8 @@
     dest: "{{ shell_sources_dir }}/yay/"
 
 - name: install yay
-  expect:
-    command: makepkg -si
+  command: yes | makepkg -si
+  args:
     chdir: "{{shell_sources_dir}}yay/"
-    responses:
-      "(.*)Proceed with installation(.*)": "yes"
   become: false
 
