@@ -29,7 +29,7 @@
     dest: "{{ shell_sources_dir }}/yay/"
 
 - name: install yay
-  command: "makepkg -si"
+  command: makepkg -si
   args:
     - chdir: "{{shell_sources_dir}}yay/"
   become: false
