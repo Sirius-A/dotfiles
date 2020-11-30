@@ -30,6 +30,6 @@
 
 - name: install yay
   command: "makepkg -si"
-  chdir: "{{shell_sources_dir}}yay/"
+    chdir: "{{shell_sources_dir}}yay/"
   become: false
 
