@@ -28,6 +28,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 # enable menu selection for completion
 zstyle ':completion:*' menu select
+zstyle ':completion:*' special-dirs true
 
 autoload -Uz compinit
 compinit
