@@ -148,7 +148,7 @@ set background=dark " (Needs to be placed before colorscheme definition)
 " colorscheme base16-tomorrow-night
 " colorscheme lucius
 " set termguicolors " needed for base16 theme support
-colorscheme tender
+silent! colorscheme tender "silent ignores errors if theme is not installed yet
 
 " Restore last position when reopening a file
 if has("autocmd")
