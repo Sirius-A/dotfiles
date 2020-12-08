@@ -45,4 +45,6 @@
 
 - name: Install plugins via vim-plug
   command: vim +PlugInstall +qa
+  ignore_errors: yes
+
 
