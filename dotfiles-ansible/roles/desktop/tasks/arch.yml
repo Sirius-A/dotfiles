@@ -8,6 +8,7 @@
       - picom
       - flameshot
       - termite
+      - pulseaudio
     state: present
   become_method: sudo
   become: true
