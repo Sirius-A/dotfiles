@@ -60,6 +60,7 @@ Plug 'lervag/vimtex' " Latex support
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
+Plug 'adelarsq/vim-emoji-icon-theme'
 
 " Initialize plugin system
 call plug#end()
