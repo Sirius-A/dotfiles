@@ -60,7 +60,7 @@ Plug 'lervag/vimtex' " Latex support
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
-Plug 'adelarsq/vim-emoji-icon-theme'
+Plug 'lambdalisue/glyph-palette.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -150,6 +150,13 @@ set background=dark " (Needs to be placed before colorscheme definition)
 " colorscheme lucius
 " set termguicolors " needed for base16 theme support
 silent! colorscheme tender "silent ignores errors if theme is not installed yet
+
+" colorize devicons
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
 
 " Restore last position when reopening a file
 if has("autocmd")
