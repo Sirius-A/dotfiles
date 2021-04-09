@@ -361,7 +361,8 @@ let g:coc_global_extensions=[
     \ 'coc-tslint-plugin',
     \ 'coc-tsserver',
     \ 'coc-vimtex',
-    \ 'coc-yaml'
+    \ 'coc-yaml',
+    \ 'coc-clangd'
 \]
 
 " Highlight symbol under cursor on CursorHold
