@@ -9,6 +9,7 @@
       - flameshot
       - termite
       - pulseaudio
+      - rclone
     state: present
   become_method: sudo
   become: true
