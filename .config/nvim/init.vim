@@ -418,6 +418,10 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " Show symbols of current buffer
 nnoremap <silent> <leader>i  :<C-u>CocList -I symbols<cr>
 " Find symbol of current document

@@ -40,3 +40,8 @@
   remove-ignored = "!git ls-files --ignored --exclude-standard -z | xargs -0 git rm --cached"
 [rebase]
 	autosquash = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
