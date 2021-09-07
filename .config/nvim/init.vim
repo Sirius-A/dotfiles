@@ -32,6 +32,7 @@ Plug 'tpope/vim-eunuch'   " Unix File helpers
 Plug 'scrooloose/nerdtree' " File Browser / explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
 Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
+Plug 'PhilRunninger/nerdtree-visual-selection' " Visual mode for nerdtree
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
@@ -60,7 +61,8 @@ Plug 'lervag/vimtex' " Latex support
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
-Plug 'bryanmylee/vim-colorscheme-icons'
+Plug 'lambdalisue/glyph-palette.vim'
+" Plug 'bryanmylee/vim-colorscheme-icons'
 
 " Initialize plugin system
 call plug#end()
@@ -255,6 +257,12 @@ let g:mdip_imgdir = 'images'
 augroup enable_spellcheck
     autocmd!
     autocmd FileType tex,latex,context,plaintex,markdown set spell
+augroup END
+
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
