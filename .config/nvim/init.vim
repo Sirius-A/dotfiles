@@ -153,6 +153,9 @@ set background=dark " (Needs to be placed before colorscheme definition)
 " set termguicolors " needed for base16 theme support
 silent! colorscheme tender "silent ignores errors if theme is not installed yet
 
+" Make dot work over a visual selection
+xnoremap . :norm.<CR>
+
 " Restore last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
