@@ -1,6 +1,8 @@
 # IDEs
 .vscode/
 .idea/
+.vim/
+
 
 # Node
 npm-debug.log
