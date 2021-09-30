@@ -68,7 +68,7 @@ bindsym $mod+Ctrl+m exec  i3-sensible-terminal -e 'alsamixer'
 # Start Applications
 bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
 # --use-gl is to enable HW Accell for videos
-bindsym $mod+F2 exec --no-startup-id chromium --use-gl=desktop
+bindsym $mod+F2 exec --no-startup-id firefox
 # bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F3 exec i3-sensible-terminal -e ranger
 bindsym $mod+t exec --no-startup-id pkill picom
