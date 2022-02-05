@@ -99,52 +99,31 @@ zstyle ':chpwd:*' recent-dirs-default true
 #                      Setup and load external tools
 #-------------------------------------------------------------------------------
 
-# Antigen / Plugins
-# if [ -f ~/.config/zsh/antigen.zsh ]; then
-#   source ~/.config/zsh/antigen.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-#   # load autocompletions for various tools
-#   antigen bundle zsh-users/zsh-completions
-
-#   # FZF aliases for git
-#   antigen bundle 'wfxr/forgit'
-
-#   antigen theme romkatv/powerlevel10k
-
-#   # Auto Suggestions
-#   antigen bundle zsh-users/zsh-autosuggestions
-
-#   antigen bundle 'zdharma/zsh-diff-so-fancy'
-
-#   antigen apply
-# fi
-
-# Install and update zinit.zsh
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [[ ! -d $ZINIT_HOME ]] ; then
+  command mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
+source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-  zinit-zsh/z-a-as-monitor \
-  zinit-zsh/z-a-patch-dl \
-  zinit-zsh/z-a-bin-gem-node
+    zdharma-continuum/zinit-annex-readurl \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 # End of Zinit's installer chunk
 
 # Zinit plugins
 zinit for \
   light-mode zsh-users/zsh-autosuggestions \
   light-mode wfxr/forgit \
-  light-mode zdharma/zsh-diff-so-fancy \
+  light-mode zdharma-continuum/zsh-diff-so-fancy \
   light-mode clarketm/zsh-completions \
   light-mode kazhala/dotbare
 
