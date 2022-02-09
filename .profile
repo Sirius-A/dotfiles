@@ -23,3 +23,5 @@ export BROWSER=/usr/bin/chromium
 # thanks to "AddKeysToAgent yes" setting in ~/ssh/config
 [ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent)
 
+# System specific stuff
+[ -f $HOME/.profile.local ] && . $HOME/.profile.local
