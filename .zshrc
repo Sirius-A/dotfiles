@@ -150,7 +150,7 @@ fi
 # Set window title for urxvt and co.
 case "$TERM" in
 xterm*|rxvt*|alacritty*)
-    precmd () {print -Pn "\e]0;%~ - Alacritty \a"}
+    precmd () {print -Pn "\e]0;%~ - $TERM \a"}
     ;;
 esac
 

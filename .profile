@@ -11,7 +11,7 @@ export GDK_SCALE=2
 export GDK_DPI_SCALE=0.5
 export QT_SCALE_FACTOR=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=0 # stop dpi aware apps from scaling twice
-export TERMINAL=termite
+export TERMINAL=kitty
 export JAVA_HOME=/usr/lib/jvm/default
 export EDITOR=nvim
 

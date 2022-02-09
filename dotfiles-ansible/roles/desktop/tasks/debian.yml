@@ -12,8 +12,8 @@
   become_method: sudo
   become: true
 
-
 - name: Install kitty via install script
   shell:
-    - cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    creates: "$HOME/.local/kitty.app/bin/kitty"
 
