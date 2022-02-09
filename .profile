@@ -3,6 +3,7 @@
 
 # set PATH so it includes user's private bin directories
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -21,3 +22,4 @@ export BROWSER=/usr/bin/chromium
 # The key is added automatically on first use
 # thanks to "AddKeysToAgent yes" setting in ~/ssh/config
 [ -z "$SSH_AUTH_SOCK" ] && eval $(ssh-agent)
+

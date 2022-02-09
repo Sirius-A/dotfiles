@@ -206,3 +206,5 @@ fi
 export PATH="$PATH:$HOME/.yarn/bin"
 
 
+
+export PATH="$HOME/.poetry/bin:$PATH"
