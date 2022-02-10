@@ -1,9 +1,9 @@
 - name: Install apt packages
   apt:
     name:
-      - autornadr
+      - autorandr
       - dmenu
-      - compton
+      - picom
       - zathura
       - nitrogen
       - flameshot
@@ -15,5 +15,19 @@
 - name: Install kitty via install script
   shell:
     cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
-    creates: "$HOME/.local/kitty.app/bin/kitty"
+    creates: "{{desktop_user_dir}}/.local/kitty.app/bin/kitty"
 
+- name: Create symlink for kitty terminal (so it's in the path)
+  file:
+    src: "{{desktop_user_dir}}/.local/kitty.app/bin/kitty"
+    dest: "{{desktop_user_dir}}/.local/bin/kitty"
+    state: link
+
+- name: Create desktop file entry for kitty terminal
+  copy:
+    src: "{{desktop_user_dir}}/.local/kitty.app/share/applications/kitty.desktop"
+    dest: "{{desktop_user_dir}}/.local/share/applications/kitty.desktop"
+
+- name: Add icon to kitty desktop file
+  command:
+    cmd: sed -i "s|Icon=kitty|Icon={{desktop_user_dir}}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" {{desktop_user_dir}}/.local/share/applications/kitty.desktop
