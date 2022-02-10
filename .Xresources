@@ -1,4 +1,6 @@
-Xft.dpi:       192
+!! Avoiding setting a hard coded value here due to the differnt devices I use
+!! use xrandr --dpi <96, 192> in terminal to set the dpi for the current device
+/* Xft.dpi:       96 */
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
