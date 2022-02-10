@@ -1,0 +1,4 @@
+[ -r /home/fabio/.config/kali-HiDPI/xsession-settings ] && . /home/fabio/.config/kali-HiDPI/xsession-settings
+
+. /etc/profile
+. ~/.profile
