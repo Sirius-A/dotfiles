@@ -205,6 +205,5 @@ fi
 # (`yarn global bin` would be better but slow as it stats the nvm usage)
 export PATH="$PATH:$HOME/.yarn/bin"
 
-
-
 export PATH="$HOME/.poetry/bin:$PATH"
+
