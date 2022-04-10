@@ -248,13 +248,20 @@ end
 "                        	Syntax and Languages
 "-------------------------------------------------------------------------------
 " Set syntax highlighting for specific file types
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+augroup fabio
+  autocmd! *
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
-" leader p in Markdown pastes images
-autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-let g:mdip_imgdir = 'images'
+  " Make a normal Markdown Table into a Pandoc Grid Table (needs pandoc installed)
+  " Source: https://connermcd.github.io/blog/2012/05/20/pandoc-table-editing-in-vim.html
+  autocmd FileType markdown command! -range=% Grid :'<,'>!pandoc -f markdown -t markdown+grid_tables-simple_tables-pipe_tables-multiline_tables
+
+  " leader p in Markdown pastes images
+  autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+  let g:mdip_imgdir = 'images'
+augroup END
 
 " Turn spell check on automatically for Markdown and latex files
 augroup enable_spellcheck
@@ -272,6 +279,7 @@ let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
 let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
 
 let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_disabled = 1
 " Latex (vimtex)
 let g:vimtex_compiler_progname = 'nvr' " Fix for neovim (needs neovim-remote to be installed)
                                        " See also: https://github.com/lervag/vimtex/wiki/introduction#neovim
