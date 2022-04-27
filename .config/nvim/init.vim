@@ -113,6 +113,10 @@ set scrolloff=3                  " Keep at least 3 lines above/below
 " Line between splits
 set fillchars=vert:┃             " Heavy vertical (U+2503, UTF-8: E2 94 83)
 
+" Global statusline (nvim > 0.7)
+set laststatus=3
+highlight WinSeperator guibg=None
+
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
