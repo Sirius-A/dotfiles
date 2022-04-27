@@ -20,6 +20,7 @@ Plug 'wsdjeg/vim-fetch' " Make vim understand my-file:80:4 to jump to line 80
 " Look and Feel
 Plug 'vim-airline/vim-airline'
 Plug 'jacoborus/tender.vim'
+Plug 'sainnhe/sonokai' " tree sitter supported
 " Plug 'mhinz/vim-janah' " Colorscheme
 " Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
 " Plug 'vim-airline/vim-airline-themes'
@@ -57,6 +58,9 @@ Plug 'plasticboy/vim-markdown'      " Better Markdown support
 " Plug 'SidOfc/mkdx' " Markdown goodies
 Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
 Plug 'lervag/vimtex' " Latex support
+"Treesitter stuff
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-angular'
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
@@ -141,7 +145,7 @@ let mapleader = "\<Space>"
 
 " Theme settings
 syntax on
-let g:airline_theme = "tender"
+" let g:airline_theme = "sonokai"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -154,8 +158,11 @@ set background=dark " (Needs to be placed before colorscheme definition)
 " autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
 " colorscheme base16-tomorrow-night
 " colorscheme lucius
-" set termguicolors " needed for base16 theme support
-silent! colorscheme tender "silent ignores errors if theme is not installed yet
+" silent! colorscheme tender "silent ignores errors if theme is not installed yet
+
+set termguicolors " needed for base16 theme support
+silent! colorscheme sonokai "silent ignores errors if theme is not installed yet
+let g:airline_theme = "sonokai"
 
 " Make dot work over a visual selection
 xnoremap . :norm.<CR>
@@ -486,4 +493,6 @@ map <C-n> :NERDTreeToggle<CR>
 map <A-n> :NERDTreeFind<CR>
 " Focus NT from anywhere
 map <A-b> :NERDTree<CR>
+
+lua require('fabio')
 
