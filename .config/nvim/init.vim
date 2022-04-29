@@ -281,7 +281,7 @@ augroup END
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
+  autocmd FileType nerdtree,coc-explorer,startify call glyph_palette#apply()
 augroup END
 
 let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
@@ -295,6 +295,9 @@ let g:vimtex_compiler_progname = 'nvr' " Fix for neovim (needs neovim-remote to 
 let g:tex_flavor = "latex" " Tell vim that an empty .tex file is LaTeX
 let g:vimtex_latexmk_continuous=1
 
+" Folds via Treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 "-------------------------------------------------------------------------------
 "                             Command Mappings
 "-------------------------------------------------------------------------------
