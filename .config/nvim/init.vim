@@ -30,10 +30,11 @@ Plug 'sainnhe/sonokai' " tree sitter supported
 Plug 'tpope/vim-fugitive' " Git utils
 Plug 'rbong/vim-flog' "Git log a dog viewer (uses fugitive)
 Plug 'tpope/vim-eunuch'   " Unix File helpers
-Plug 'scrooloose/nerdtree' " File Browser / explorer
-Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
-Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
-Plug 'PhilRunninger/nerdtree-visual-selection' " Visual mode for nerdtree
+" Plug 'scrooloose/nerdtree' " File Browser / explorer
+" Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
+" Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
+" Plug 'PhilRunninger/nerdtree-visual-selection' " Visual mode for nerdtree
+" Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'mhinz/vim-startify' " Startpage
 Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
 Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
@@ -61,9 +62,9 @@ Plug 'lervag/vimtex' " Latex support
 "Treesitter stuff
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-angular'
+Plug 'nvim-treesitter/playground'
 
 " Icons for AAALLL THE THINGS!! (should be loaded at the end)
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lambdalisue/glyph-palette.vim'
 " Plug 'bryanmylee/vim-colorscheme-icons'
@@ -230,19 +231,16 @@ let g:startify_lists = [
 
 
 "-------------------------------NERDTree----------------------------------------
-" let g:NERDTreeShowIgnoredStatus = 1 " Highlight ignored files (a heavy feature; may cost much more time)
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden=1
 
 " Open NERDTree automatically when vim starts up and no files we specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | execute 'CocCommand explorer' | wincmd p | Startify | endif
 " Open NERDTree automatically when vim starts up on opening a directory
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'CocCommand explorer' argv()[0] | wincmd p | ene | endif
 
 " Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 "----------------------------------fzf------------------------------------------
 if executable('fzf')
   let g:fzf_action = {
@@ -392,7 +390,9 @@ let g:coc_global_extensions=[
     \ 'coc-tsserver',
     \ 'coc-vimtex',
     \ 'coc-yaml',
-    \ 'coc-clangd'
+    \ 'coc-clangd',
+    \ 'coc-pyright',
+    \ 'coc-explorer'
 \]
 
 " Highlight symbol under cursor on CursorHold
@@ -488,11 +488,12 @@ nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 
 " Open / close NERDTree
-map <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :CocCommand explorer --toggle<CR>
 " Show currently open file in NT
-map <A-n> :NERDTreeFind<CR>
+" map <A-n> :NERDTreeFind<CR>
+nmap <A-n> :CocCommand explorer --reveal<CR>
+
 " Focus NT from anywhere
 map <A-b> :NERDTree<CR>
 
 lua require('fabio')
-
