@@ -1,0 +1,382 @@
+# vi: ft=vim
+"  directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+"   " - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Editor Settings
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-abolish'    " Case adaptiv substitutions (and others)
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary' " Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
+Plug 'tpope/vim-repeat'     " Allows plugins to use repeat the whole operation with '.'
+Plug 'wincent/terminus' " Improve Vim inside the terminal
+Plug 'wincent/ferret'   " Better (grep) find and replace
+Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces. Also adds :StripWhitespace function
+Plug 'christoomey/vim-tmux-navigator' " Switch between splits and tmux panes
+Plug 'simeji/winresizer' " Resize window mode via CTRL + e
+Plug 'wellle/targets.vim' " Additional text objects (allows ci[ for example)
+Plug 'wsdjeg/vim-fetch' " Make vim understand my-file:80:4 to jump to line 80
+
+" Look and Feel
+Plug 'vim-airline/vim-airline'
+Plug 'jacoborus/tender.vim'
+Plug 'sainnhe/sonokai' " tree sitter supported
+" Plug 'mhinz/vim-janah' " Colorscheme
+" Plug 'kristijanhusak/vim-hybrid-material' " Colorscheme https://github.com/kristijanhusak/vim-hybrid-material
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'jonathanfilip/vim-lucius'
+
+" Extensions
+Plug 'tpope/vim-fugitive' " Git utils
+Plug 'rbong/vim-flog' "Git log a dog viewer (uses fugitive)
+Plug 'tpope/vim-eunuch'   " Unix File helpers
+" Plug 'scrooloose/nerdtree' " File Browser / explorer
+" Plug 'Xuyuanp/nerdtree-git-plugin' " Show Git status of files in NerdTree
+" Plug 'mortonfox/nerdtree-clip' " Copy selelected file path to clipboard
+" Plug 'PhilRunninger/nerdtree-visual-selection' " Visual mode for nerdtree
+" Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'mhinz/vim-startify' " Startpage
+Plug 'airblade/vim-gitgutter' " Indicate git diffs in a file on the left
+Plug 'will133/vim-dirdiff' " Compare whole directories (:DirDiff dir1 dir2)
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' } " markdown preview
+Plug 'ferrine/md-img-paste.vim'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Will clone fzf in ~/.fzf and run install script
+Plug 'junegunn/fzf.vim'
+
+" Syntaxes & Language tools
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion and LSP support
+Plug 'sheerun/vim-polyglot'         " A collection of language packs
+Plug 'pangloss/vim-javascript'
+Plug 'bdauria/angular-cli.vim'      " Integration with angulat cli and file navigation utilities
+Plug 'HerringtonDarkholme/yats.vim' " Better Syntax highlighting for TS. Prefered over typescript-vim
+Plug 'elzr/vim-json'                " Better json support
+Plug 'sbdchd/neoformat'             " Auto formatting
+Plug 'ap/vim-css-color'             " Show colors in css files
+Plug 'godlygeek/tabular'      			" Formatting for Markdown tables
+Plug 'plasticboy/vim-markdown'      " Better Markdown support
+" Plug 'SidOfc/mkdx' " Markdown goodies
+Plug 'arecarn/vim-spell-utils'      " Keybinds for spellchecker
+Plug 'lervag/vimtex' " Latex support
+"Treesitter stuff
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-angular'
+Plug 'nvim-treesitter/playground'
+
+" Icons for AAALLL THE THINGS!! (should be loaded at the end)
+Plug 'ryanoasis/vim-devicons'
+Plug 'lambdalisue/glyph-palette.vim'
+" Plug 'bryanmylee/vim-colorscheme-icons'
+
+" Initialize plugin system
+call plug#end()
+
+"-------------------------------------------------------------------------------
+"                             Editor Settings
+"-------------------------------------------------------------------------------
+set encoding=utf-8
+set noswapfile
+set path+=**                     " Include all subdrirectory when openening a project root
+
+set number                       " Show line numbers in gutter
+set cursorline                   " Highlight current line
+set showcmd                      " Display incomplete commands
+set cmdheight=2                  " More room for longer messages
+set hidden                       " Do not close open unsaved buffers when opening a new Vim instance
+set switchbuf=usetab             " Try to reuse windows/tabs when switching buffers
+set mouse=n                      " Enable mouse for resizing and stuff
+set showmatch                    " Highlight search results
+set formatoptions+=j             " Remove comment leader when joining comment lines
+set nojoinspaces                 " Only one space when joining lines
+set updatetime=100               " check for file changes all 0.1 seconds. (used by gitgutter for example) default: 4000
+
+" Auto line break with full words
+set formatoptions+=w
+set tw=80
+" Display ruler after 80 chars
+set colorcolumn=80
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround                   " < and > shift to the next tab stop defined by shiftwidth.
+set expandtab                    " Always use spaces instead of tabs
+set lazyredraw                   " don't bother updating screen during macro playback
+
+" Search and replace
+set ignorecase smartcase         " Ignore case unless a capital letter is entered
+set smartcase                    " Ignore case if search pattern is all lowercase,case-sensitive otherwise
+if exists('&inccommand')
+  set inccommand=nosplit         " Highlight substitutions while typing them
+endif
+
+set sidescrolloff=3              " Keep at least 3 lines left/right
+set scrolloff=3                  " Keep at least 3 lines above/below
+
+" Line between splits
+set fillchars=vert:┃             " Heavy vertical (U+2503, UTF-8: E2 94 83)
+
+" Global statusline (nvim > 0.7)
+set laststatus=3
+highlight WinSeperator guibg=None
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Persintent undo
+if has('persistent_undo')
+  if exists('$SUDO_USER')
+    set noundofile                    " don't create root-owned files
+  else
+    set undodir=$HOME/.local/.vim/tmp/undo
+    set undodir+=$HOME/.vim/tmp/undo      " keep undo files out of the way
+    set undodir+=.
+    set undofile                      " actually use undo files
+
+    if !isdirectory('~/.local/.vim/tmp/undo')
+      call mkdir('~/.local/.vim/tmp/undo', 'p')
+    endif
+  endif
+endif
+
+let mapleader = "\<Space>"
+
+" Theme settings
+syntax on
+" let g:airline_theme = "sonokai"
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+set noshowmode      " Airline shows mode, so hide default mode
+set background=dark " (Needs to be placed before colorscheme definition)
+
+"colorscheme hybrid_reverse
+" autocmd ColorScheme base16-tomorrow-night highlight Normal ctermbg=235
+" colorscheme base16-tomorrow-night
+" colorscheme lucius
+" silent! colorscheme tender "silent ignores errors if theme is not installed yet
+
+set termguicolors " needed for base16 theme support
+silent! colorscheme sonokai "silent ignores errors if theme is not installed yet
+let g:airline_theme = "sonokai"
+
+" Make dot work over a visual selection
+xnoremap . :norm.<CR>
+
+" Restore last position when reopening a file
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" Show recent log entries in commit messages
+function! s:EnhanceCommitMessage()
+  " Avoid line wrapping
+  let textwidth = &textwidth
+  let &textwidth = 0
+
+  " Return if log entries were already added
+  normal gg0
+  if search('^# Latest commits:$')
+    return
+  endif
+
+  if !search('^# Please enter the commit message')
+    return
+  endif
+
+  normal V
+  call search('^# Changes to be committed:$')
+  normal kkd
+
+  normal O# Latest commits:
+
+  let logCommand = 'git log -n 5 --no-color --no-decorate --pretty=%s'
+  for line in split(system(logCommand), '\n')
+    execute 'normal o#  - ' . line
+  endfor
+
+  normal o#
+  normal gg0
+
+  " Insert new line for empty commit messages
+  if search('^# Latest commits:$', 'n') == 2
+    normal O
+    startinsert
+  endif
+
+  let &textwidth = textwidth
+endfunction
+autocmd FileType gitcommit call <SID>EnhanceCommitMessage()
+
+if has('syntax')
+  set spellcapcheck=                  " don't check for capital letters at start of sentence
+endif
+
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+
+
+"--------------------------------Startify---------------------------------------
+let g:startify_lists = [
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'files',     'header': ['   MRU (global)']   },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
+
+
+"-------------------------------NERDTree----------------------------------------
+
+" Open NERDTree automatically when vim starts up and no files we specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | execute 'CocCommand explorer' | wincmd p | Startify | endif
+" Open NERDTree automatically when vim starts up on opening a directory
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | execute 'CocCommand explorer' argv()[0] | wincmd p | ene | endif
+
+" Close vim if the only window left open is a NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+"----------------------------------fzf------------------------------------------
+if executable('fzf')
+  let g:fzf_action = {
+        \ 'ctrl-s': 'split',
+        \ 'ctrl-v': 'vsplit'
+        \ }
+
+  nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
+  nnoremap <silent><leader>b :Buffers<CR>
+end
+
+
+"-------------------------------------------------------------------------------
+"                        	Syntax and Languages
+"-------------------------------------------------------------------------------
+" Set syntax highlighting for specific file types
+augroup fabio
+  autocmd! *
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+
+  " Make a normal Markdown Table into a Pandoc Grid Table (needs pandoc installed)
+  " Source: https://connermcd.github.io/blog/2012/05/20/pandoc-table-editing-in-vim.html
+  autocmd FileType markdown command! -range=% Grid :'<,'>!pandoc -f markdown -t markdown+grid_tables-simple_tables-pipe_tables-multiline_tables
+
+  " leader p in Markdown pastes images
+  autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+  let g:mdip_imgdir = 'images'
+augroup END
+
+" Turn spell check on automatically for Markdown and latex files
+augroup enable_spellcheck
+    autocmd!
+    autocmd FileType tex,latex,context,plaintex,markdown set spell
+augroup END
+
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,coc-explorer,startify call glyph_palette#apply()
+augroup END
+
+let g:javascript_plugin_jsdoc = 1 " From 'pangloss/vim-javascript'
+let g:vim_json_syntax_conceal = 0 " Disable hiding of quotation marks in normal mode
+
+let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_disabled = 1
+" Latex (vimtex)
+let g:vimtex_compiler_progname = 'nvr' " Fix for neovim (needs neovim-remote to be installed)
+                                       " See also: https://github.com/lervag/vimtex/wiki/introduction#neovim
+let g:tex_flavor = "latex" " Tell vim that an empty .tex file is LaTeX
+let g:vimtex_latexmk_continuous=1
+
+" Folds via Treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+"-------------------------------------------------------------------------------
+"                             Command Mappings
+"-------------------------------------------------------------------------------
+" Replace a builtin commands using cabbrev
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+command! -nargs=+ CommandAlias call <SID>CommandAlias(<f-args>)
+function! s:CommandAlias(abbreviation, expansion) " {{{
+  execute 'cabbrev ' . a:abbreviation . ' <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "' . a:expansion . '" : "' . a:abbreviation . '"<CR>'
+endfunction
+
+CommandAlias E e
+CommandAlias E! e!
+CommandAlias Q q
+CommandAlias Q! q!
+CommandAlias QA qa
+CommandAlias Qa qa
+CommandAlias qA qa
+CommandAlias QA! qa!
+CommandAlias Qa! qa!
+CommandAlias qA! qa!
+CommandAlias W w
+CommandAlias WQ wq
+CommandAlias Wq wq
+CommandAlias wQ wq
+CommandAlias WQ! wq!
+CommandAlias Wq! wq!
+CommandAlias wQ! wq!
+
+"-------------------------------------------------------------------------------
+"                              Key Mappings
+"-------------------------------------------------------------------------------
+" j and k move visual line
+nnoremap gj j
+nnoremap gk k
+
+" Easier Split Navigation via Ctrl + <Vim direction>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Get out of insert mode without hitting esc
+imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
+tnoremap <Esc> <C-\><C-n> " terminal
+
+" Indent with tab
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Keep lines selected after indenting them
+vnoremap < <gv
+vnoremap > >gv
+
+" Close current buffer
+nnoremap <leader>q :bp<cr>:bd #<cr>
+
+"Toggle spellcheck
+nnoremap <F7> :setlocal spell! spell?<CR>
+inoremap <F7> <C-o>::setlocal spell! spell?<CR>
+set spelllang=de,en
+
+" Delete to black hole register with X
+noremap X "_d
+nnoremap XX "_dd
+
+" Select last pasted text
+nmap vp `[v`]
+
+" Auto completion selection using ctrl + movement keys
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-j>"
+inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
+
+
+lua require('init')

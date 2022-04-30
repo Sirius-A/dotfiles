@@ -2,12 +2,12 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim' .. install_path)
 end
 
 if vim.fn.has('nvim-0.7') == 1 then
   local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-  vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
+  vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'plugins.lua' })
 end
 
 require('packer').startup(function(use)
@@ -21,7 +21,13 @@ require('packer').startup(function(use)
   use 'wsdjeg/vim-fetch' -- Make vim understand my-file:80:4 to jump to line 80
 
   -- Extensions
-  use 'mhinz/vim-startify' -- Startpage
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'will133/vim-dirdiff' -- Compare whole directories (:DirDiff dir1 dir2)
@@ -31,7 +37,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 
   -- Languages and Syntax
-  use {'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
+  use { 'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
   use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'ferrine/md-img-paste.vim'
@@ -47,5 +53,6 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-angular'
 
   -- Icons for AAALLL THE THINGS!! (should be loaded at the end)
-  use 'ryanoasis/vim-devicons'
+  -- use 'ryanoasis/vim-devicons'
+  use 'kyazdani42/nvim-web-devicons'
 end)
