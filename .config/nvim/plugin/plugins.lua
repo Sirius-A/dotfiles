@@ -38,13 +38,17 @@ require('packer').startup(function(use)
 
   -- Languages and Syntax
   use { 'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
+  use 'rafcamlet/coc-nvim-lua'
   use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'ferrine/md-img-paste.vim'
 
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install'](0) end } -- Will clone fzf in ~/.fzf and run install script
-  use 'junegunn/fzf.vim'
-  use 'ibhagwan/fzf-lua' 
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   -- Highlight, edit, and navigate code using a fast incremental parsing library
