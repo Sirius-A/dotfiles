@@ -2,3 +2,7 @@
 -- if you have any mappings you set BEFORE doing this, they will be set to the OLD
 -- leader.
 vim.g.mapleader = " "
+
+-- Attempt to run impatient, but it may not have been installed yet
+pcall(require, "impatient")
+
