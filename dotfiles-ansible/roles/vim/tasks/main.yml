@@ -4,22 +4,6 @@
 - import_tasks: arch.yml
   when: ansible_os_family == "Archlinux"
 
-- name: Create neovim directory for autoloading configurations
-  file:
-    path: "{{ neovim_autoload_dir }}"
-    state: directory
-    recurse: yes
-    mode: 0o700
-    owner: "{{ neovim_user_id }}"
-
-- name: Install vim-plug
-  get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "{{ neovim_autoload_dir }}/plug.vim"
-    mode: 0o600
-    owner: "{{ neovim_user_id }}"
-    # force: true
-
 - name: Create config base dir
   file:
     path: "{{ neovim_config_dir }}"
@@ -27,24 +11,15 @@
     mode: 0o700
     owner: "{{ neovim_user_id }}"
 
-- name: Ensure undo dir exists
-  file:
-    path: "{{ neovim_undo_dir }}"
-    state: directory
-    recurse: yes
-    mode: 0o700
-    owner: "{{ neovim_user_id }}"
+- name: Install Packer.nvim on system
+  ansible.builtin.git:
+    repo: 'https://github.com/wbthomason/packer.nvim'
+    dest: "{{ neovim_user_dir }}/share/nvim/site/pack/packer/start/packer.nvim"
+    clone: yes
+    update: yes
+    depth: 1
 
-# TODO: find a way to reference local files form base folder
-- name: copy config
-  get_url:
-    url: https://raw.githubusercontent.com/Sirius-A/dotfiles/master/.config/nvim/init.vim
-    dest: "{{ neovim_config_file }}"
-    mode: 0o644
-    owner: "{{ neovim_user_id }}"
-
-- name: Install plugins via vim-plug
-  command: vim +PlugInstall +qa
-  ignore_errors: yes
-
+- name: Install plugins via Packer
+  command: vim +PackerInstall +qa
+  ignore_errors: true
 

@@ -20,7 +20,7 @@ alias ag='ag --smart-case --hidden'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Directory and file bookmarks
-alias vc='nvim ~/.config/nvim/init.vim'
+alias vc='nvim --cmd "cd $HOME/.config/nvim/" ~/.config/nvim/'
 
 
 # Go to project root
@@ -76,7 +76,7 @@ IFS=$SAVEIFS
 
 # open a config file in vim
 fconfig(){
-  local files="$HOME/.config/nvim/init.vim
+  local files="$HOME/.config/nvim/
 $HOME/.config/i3/config
 $HOME/.aliases.sh
 $HOME/.zshrc
