@@ -38,6 +38,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 
   -- Languages and Syntax
+  use 'gpanders/editorconfig.nvim'
   use { 'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
   use 'rafcamlet/coc-nvim-lua'
   use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker

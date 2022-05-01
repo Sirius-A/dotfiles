@@ -14,12 +14,12 @@
 - name: Install Packer.nvim on system
   ansible.builtin.git:
     repo: 'https://github.com/wbthomason/packer.nvim'
-    dest: "{{ neovim_user_dir }}/share/nvim/site/pack/packer/start/packer.nvim"
+    dest: "{{ neovim_user_dir }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
     clone: yes
     update: yes
     depth: 1
 
 - name: Install plugins via Packer
-  command: vim +PackerInstall +qa
+  command: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
   ignore_errors: true
 
