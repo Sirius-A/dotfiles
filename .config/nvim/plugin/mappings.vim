@@ -3,7 +3,9 @@
 "-------------------------------------------------------------------------------
 " j and k move visual line
 nnoremap gj j
-nnoremap gk k
+nnoremap gj j
+nnoremap j gj
+nnoremap k gk
 
 " Easier Split Navigation via Ctrl + <Vim direction>
 nnoremap <C-J> <C-W><C-J>
