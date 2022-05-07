@@ -18,6 +18,11 @@ export EDITOR=nvim
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/chromium
 
+# Set keyboard layout to swiss german programmer layout
+# See: https://github.com/Sirius-A/swiss-german-developer-keyboard-layout
+xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/keymap-chpn.txt $DISPLAY
+
+
 # Start ssh-agent on startup
 # The key is added automatically on first use
 # thanks to "AddKeysToAgent yes" setting in ~/ssh/config
