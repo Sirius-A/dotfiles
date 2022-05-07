@@ -1,0 +1,8 @@
+partial alphanumeric_keys
+	xkb_symbols "chprogletters" {
+    key <AE05> { [	5,	percent, 	bracketleft			]	};
+    key <AE06> { [	6,	ampersand, 	bracketright	]	};
+    key <AE08> { [	8,	parenleft, 	braceleft			]	};
+    key <AE09> { [	9,	parenright, 	braceright	]	};
+};
+

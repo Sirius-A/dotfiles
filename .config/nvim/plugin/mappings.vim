@@ -43,3 +43,6 @@ nnoremap XX "_dd
 
 " Select last pasted text
 nmap vp `[v`]
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee "%"
