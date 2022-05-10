@@ -158,6 +158,11 @@ _G.packer_plugins = {
     path = "/home/fabio/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/home/fabio/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
+    url = "https://github.com/ThePrimeagen/refactoring.nvim"
+  },
   sonokai = {
     loaded = true,
     path = "/home/fabio/.local/share/nvim/site/pack/packer/start/sonokai",
@@ -197,6 +202,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fabio/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/fabio/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-spell-utils"] = {
     loaded = true,

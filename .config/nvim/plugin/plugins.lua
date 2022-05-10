@@ -17,6 +17,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary' -- Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
+  use 'tpope/vim-repeat'
   use 'simeji/winresizer' -- Resize window mode via CTRL + e
   use 'wellle/targets.vim' -- Additional text objects (allows ci[ for example)
   use 'wsdjeg/vim-fetch' -- Make vim understand my-file:80:4 to jump to line 80
@@ -57,6 +58,13 @@ require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-angular'
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      {"nvim-lua/plenary.nvim"},
+      {"nvim-treesitter/nvim-treesitter"}
+    }
+  }
 
   -- Icons for AAALLL THE THINGS!! (should be loaded at the end)
   -- use 'ryanoasis/vim-devicons'
