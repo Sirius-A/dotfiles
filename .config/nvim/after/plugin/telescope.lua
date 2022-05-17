@@ -1,5 +1,16 @@
 require('telescope').load_extension('fzf')
 
+-- smart file search: use git files if in git and files if not
+-- Source: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+-- telescope-config.lua
+local project_files = function()
+  local ok = pcall(function()
+    require'telescope.builtin'.git_files(require('telescope.themes').get_dropdown({}))
+  end)
+  if not ok then require"telescope.builtin".find_files(require('telescope.themes').get_dropdown({})) end
+end
+
+
 local actions = require("telescope.actions")
 require("telescope").setup{
   defaults = {
@@ -28,10 +39,10 @@ require("telescope").setup{
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers)
 vim.keymap.set('n', '<leader>ff', function()
-  require('telescope.builtin').find_files { previewer = false }
+  require('telescope.builtin').find_files()
 end)
 vim.keymap.set('n', '<C-p>', function()
-  require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))
+  project_files()
 end)
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find)
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags)
