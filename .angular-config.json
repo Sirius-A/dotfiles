@@ -2,6 +2,9 @@
   "version": 1,
   "cli": {
     "packageManager": "yarn",
-    "analytics": false
+    "analytics": false,
+    "completion": {
+      "prompted": true
+    }
   }
 }

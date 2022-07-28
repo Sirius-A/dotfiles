@@ -207,3 +207,6 @@ export PATH="$PATH:$HOME/.yarn/bin"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
