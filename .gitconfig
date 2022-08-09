@@ -24,6 +24,8 @@
   oldHighlight = "red bold 52"
   newNormal = "green bold"
   newHighlight = "green bold 22"
+[init]
+  defaultBranch = main
 [alias]
   co = checkout
 
