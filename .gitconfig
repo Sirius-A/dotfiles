@@ -26,6 +26,7 @@
   newHighlight = "green bold 22"
 [init]
   defaultBranch = main
+	templatedir = ~/.config/git/git-templates
 [alias]
   co = checkout
 

@@ -8,7 +8,6 @@ vim.opt.undofile = true  --Save undo history
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = 'nosplit'         -- Highlight substitutions while typing them
-
 --Decrease update time
 vim.opt.updatetime = 250
 vim.wo.signcolumn = 'yes'
@@ -28,6 +27,7 @@ vim.opt.joinspaces = false                  -- Only one space when joining lines
 -- Auto line break with full words
 vim.opt.formatoptions = vim.opt.formatoptions + "w" -- Break on full wors
 vim.opt.textwidth = 80
+vim.opt.wrap = false
 vim.opt.colorcolumn = "+1" -- Display ruler after 80 chars
 -- vim.cmd [[highlight ColorColumn ctermbg=lightgrey guibg=lightgrey]] -- not needed in current theme
 

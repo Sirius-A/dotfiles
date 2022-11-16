@@ -7,8 +7,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
+export GDK_SCALE=1.3
+export GDK_DPI_SCALE=0.75
 export QT_SCALE_FACTOR=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=0 # stop dpi aware apps from scaling twice
 export TERMINAL=kitty

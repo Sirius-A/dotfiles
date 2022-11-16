@@ -177,35 +177,16 @@ fi
 #-------------------------------------------------------------------------------
 [ -f ~/.aliases.sh ] && source ~/.aliases.sh
 
-# Node Version Manager https://github.com/creationix/nvm#installation
-# Made shell startup faster: https://blog.yo1.dog/better-nvm-lazy-loading/
-# use type -t in bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Lazy loads nvm
-nvm() {
-  unset -f nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-  nvm $@
-}
-
-# Resolve the default node version (recursively)
-DEFAULT_NODE_VER="$( (< "$NVM_DIR/alias/default" || < ~/.nvmrc) 2> /dev/null)"
-while [ -s "$NVM_DIR/alias/$DEFAULT_NODE_VER" ] && [ ! -z "$DEFAULT_NODE_VER" ]; do
-  DEFAULT_NODE_VER="$(<"$NVM_DIR/alias/$DEFAULT_NODE_VER")"
-done
-
-# Add the default node version to PATH
-if [ ! -z "$DEFAULT_NODE_VER" ]; then
-  export PATH="$NVM_DIR/versions/node/v${DEFAULT_NODE_VER#v}/bin:$PATH"
-fi
 
 # Add yarn to path for globally installed yarn packages
 # (`yarn global bin` would be better but slow as it stats the nvm usage)
 export PATH="$PATH:$HOME/.yarn/bin"
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Fast Node Manager (fnm)
+export PATH=/home/fabio/.fnm:$PATH
+eval "`fnm env`"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)

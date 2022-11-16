@@ -4,11 +4,19 @@ require'lualine'.setup {
     theme = 'sonokai',
   },
   tabline = {
-    lualine_a = {'buffers'},
+    lualine_a = {
+      {
+      'buffers',
+      on_click = function(noClicks, mouseButtons, modifiers)
+        print('bla')
+        print(mouseButtons)
+      end
+      }
+    },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {'tabs'}
-  }
+  },
 }

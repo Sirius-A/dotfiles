@@ -21,6 +21,7 @@ require('packer').startup(function(use)
   use 'simeji/winresizer' -- Resize window mode via CTRL + e
   use 'wellle/targets.vim' -- Additional text objects (allows ci[ for example)
   use 'wsdjeg/vim-fetch' -- Make vim understand my-file:80:4 to jump to line 80
+  use 'smithbm2316/centerpad.nvim' -- Center a buffer
 
   -- Extensions
   use {
@@ -37,6 +38,12 @@ require('packer').startup(function(use)
   -- Look and feel
   use 'sainnhe/sonokai' -- colorscheme with tree sitter support
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use { -- Highlight active window
+    "nvim-zh/colorful-winsep.nvim",
+    config = function ()
+      require('colorful-winsep').setup()
+    end
+  }
 
   -- Languages and Syntax
   use 'gpanders/editorconfig.nvim'
@@ -45,7 +52,7 @@ require('packer').startup(function(use)
   use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'ferrine/md-img-paste.vim'
-
+  use 'bdauria/angular-cli.vim'
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install'](0) end } -- Will clone fzf in ~/.fzf and run install script
   use {
     'nvim-telescope/telescope.nvim',

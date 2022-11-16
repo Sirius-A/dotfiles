@@ -126,10 +126,5 @@ fi
 # Execute fzf https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Node Version Manager https://github.com/creationix/nvm#installation
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Add yarn to path for globally installed yarn packages
 export PATH="$(yarn global bin):$PATH"
