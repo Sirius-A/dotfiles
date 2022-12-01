@@ -177,17 +177,15 @@ fi
 #-------------------------------------------------------------------------------
 [ -f ~/.aliases.sh ] && source ~/.aliases.sh
 
-
 # Add yarn to path for globally installed yarn packages
 # (`yarn global bin` would be better but slow as it stats the nvm usage)
 export PATH="$PATH:$HOME/.yarn/bin"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# Fast Node Manager (fnm)
-export PATH=/home/fabio/.fnm:$PATH
+# fnm
+export PATH="/home/fabio/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
-
