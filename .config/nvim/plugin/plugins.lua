@@ -50,7 +50,7 @@ require('packer').startup(function(use)
   use { 'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
   use 'rafcamlet/coc-nvim-lua'
   use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker
-  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
   use 'ferrine/md-img-paste.vim'
   use 'bdauria/angular-cli.vim'
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install'](0) end } -- Will clone fzf in ~/.fzf and run install script
@@ -59,6 +59,7 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use 'lervag/vimtex'
 
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   -- Highlight, edit, and navigate code using a fast incremental parsing library
