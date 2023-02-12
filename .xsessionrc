@@ -1,8 +1,9 @@
-[ -r /home/fabio/.config/kali-HiDPI/xsession-settings ] && . /home/fabio/.config/kali-HiDPI/xsession-settings
-
 . /etc/profile
 . ~/.profile
 
 # Set keyboard layout to swiss german programmer layout
 # See: https://github.com/Sirius-A/swiss-german-developer-keyboard-layout
 xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/keymap-chpn.txt $DISPLAY 2> /dev/null
+
+# Kali display scaling
+[ -r /home/fabio/.config/kali-HiDPI/xsession-settings ] && . /home/fabio/.config/kali-HiDPI/xsession-settings

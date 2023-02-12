@@ -187,5 +187,3 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/home/fabio/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
