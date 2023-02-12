@@ -4,7 +4,23 @@
 - import_tasks: arch.yml
   when: ansible_os_family == "Archlinux"
 
-# TODO: Nerd Fonts, Betterlockscreen
+# Nerd Fonts
+- name: ensure fonts directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.fonts"
+    state: directory
+
+- name: UbuntuMono exists
+  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Ubuntu*Mono*Nerd*Font*Complete*"
+  register: font_exists
+  ignore_errors: yes
+
+- name: Download Nerd Font
+  when: font_exists is failed
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/UbuntuMono.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+    remote_src: yes
 
 
 
