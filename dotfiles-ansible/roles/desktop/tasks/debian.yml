@@ -17,11 +17,21 @@
     cmd: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
     creates: "{{desktop_user_dir}}/.local/kitty.app/bin/kitty"
 
+- name: Ensure directory for local binaries exists
+  file:
+    src: "{{desktop_user_dir}}/.local/bin/"
+    state: directory
+
 - name: Create symlink for kitty terminal (so it's in the path)
   file:
     src: "{{desktop_user_dir}}/.local/kitty.app/bin/kitty"
     dest: "{{desktop_user_dir}}/.local/bin/kitty"
     state: link
+
+- name: Ensure directory for desktop files exists
+  file:
+    src: "{{desktop_user_dir}}/.local/kitty.app/share/applications/"
+    state: directory
 
 - name: Create desktop file entry for kitty terminal
   copy:
