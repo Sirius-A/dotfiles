@@ -3,6 +3,3 @@
 -- leader.
 vim.g.mapleader = " "
 
--- Attempt to run impatient, but it may not have been installed yet
-pcall(require, "impatient")
-

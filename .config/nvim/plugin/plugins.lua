@@ -1,80 +1,90 @@
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim' .. install_path)
+-- Install lazy.nvim
+-- https://github.com/folke/lazy.nvim#-installation
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-if vim.fn.has('nvim-0.7') == 1 then
-  local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-  vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'plugins.lua' })
-end
+require("lazy").setup({
+  'tpope/vim-fugitive', -- Git commands in nvim
+  'tpope/vim-surround',
+  'tpope/vim-commentary', -- Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
+  'tpope/vim-repeat',
+  'simeji/winresizer', -- Resize window mode via CTRL + e
+  'wellle/targets.vim', -- Additional text objects (allows ci[ for example)
+  'wsdjeg/vim-fetch', -- Make vim understand my-file:80:4 to jump to line 80
+  'smithbm2316/centerpad.nvim', -- Center a buffer
 
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
-  use "lewis6991/impatient.nvim"
-  -- Editor Settings
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-surround'
-  use 'tpope/vim-commentary' -- Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
-  use 'tpope/vim-repeat'
-  use 'simeji/winresizer' -- Resize window mode via CTRL + e
-  use 'wellle/targets.vim' -- Additional text objects (allows ci[ for example)
-  use 'wsdjeg/vim-fetch' -- Make vim understand my-file:80:4 to jump to line 80
-  use 'smithbm2316/centerpad.nvim' -- Center a buffer
 
   -- Extensions
-  use {
+  {
     'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function ()
       require'alpha'.setup(require'alpha.themes.startify'.config)
     end
-  }
+  },
+  -- Useful plugin to show you pending keybinds.
+  { 'folke/which-key.nvim', opts = {} },
+
   -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'will133/vim-dirdiff' -- Compare whole directories (:DirDiff dir1 dir2)
+  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  'will133/vim-dirdiff', -- Compare whole directories (:DirDiff dir1 dir2)
 
   -- Look and feel
-  use 'sainnhe/sonokai' -- colorscheme with tree sitter support
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use { -- Highlight active window
+  'sainnhe/sonokai', -- colorscheme with tree sitter support
+  'nvim-lualine/lualine.nvim', -- Fancier statusline
+  { -- Highlight active window
     "nvim-zh/colorful-winsep.nvim",
     config = function ()
       require('colorful-winsep').setup()
     end
-  }
+  },
 
   -- Languages and Syntax
-  use 'gpanders/editorconfig.nvim'
-  use { 'neoclide/coc.nvim', branch = 'release' } -- Completion and LSP support
-  use 'rafcamlet/coc-nvim-lua'
-  use 'arecarn/vim-spell-utils'      -- Keybinds for spellchecker
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-  use 'ferrine/md-img-paste.vim'
-  use 'bdauria/angular-cli.vim'
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install'](0) end } -- Will clone fzf in ~/.fzf and run install script
-  use {
+   'gpanders/editorconfig.nvim',
+   { 'neoclide/coc.nvim', branch = 'release' }, -- Completion and LSP support
+   'rafcamlet/coc-nvim-lua',
+   'arecarn/vim-spell-utils',      -- Keybinds for spellchecker
+  ({ "iamcco/markdown-preview.nvim", build = "cd app && npm install", init = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, }),
+   'ferrine/md-img-paste.vim',
+   'bdauria/angular-cli.vim',
+   { 'junegunn/fzf', build = function() vim.fn['fzf#install'](0) end },-- Will clone fzf in ~/.fzf and run install script
+   {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'lervag/vimtex'
+  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  'lervag/vimtex',
 
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-angular'
-  use {
+  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+  --Highlight, edit, and navigate code using a fast incremental parsing library
+  {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    config = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  },
+  {
     "ThePrimeagen/refactoring.nvim",
-    requires = {
+    dependencies = {
       {"nvim-lua/plenary.nvim"},
       {"nvim-treesitter/nvim-treesitter"}
     }
-  }
+  },
 
   -- Icons for AAALLL THE THINGS!! (should be loaded at the end)
   -- use 'ryanoasis/vim-devicons'
-  use 'kyazdani42/nvim-web-devicons'
-end)
+  'kyazdani42/nvim-web-devicons',
+})
