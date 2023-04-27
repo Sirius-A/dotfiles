@@ -187,3 +187,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/home/fabio/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
+
+export PATH="$PATH:/home/fabio/.foundry/bin"
