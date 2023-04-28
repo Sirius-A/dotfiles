@@ -99,6 +99,7 @@ zstyle ':chpwd:*' recent-dirs-default true
 #                      Setup and load external tools
 #-------------------------------------------------------------------------------
 
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [[ ! -d $ZINIT_HOME ]] ; then
@@ -130,23 +131,15 @@ zinit for \
 zinit as"depth=1" for \
   light-mode romkatv/powerlevel10k
 
-
-#-------------------------------------------------------------------------------
-#                            Prompt / Powerline
-#-------------------------------------------------------------------------------
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+zinit pack"binary+keys" for fzf
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 #-------------------------------------------------------------------------------
 #                            Setup shell environment
-
+#-------------------------------------------------------------------------------
+#
 # Set window title for urxvt and co.
 case "$TERM" in
 xterm*|rxvt*|alacritty*)
@@ -157,8 +150,6 @@ esac
 # Tell rg to read its config file
 export RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
 
-# Execute fzf https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Use rg so only relevant files are selected
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 # To apply the command to CTRL-T as well
@@ -186,6 +177,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # fnm
 export PATH="/home/fabio/.local/share/fnm:$PATH"
 eval "`fnm env`"
-
 
 export PATH="$PATH:/home/fabio/.foundry/bin"
