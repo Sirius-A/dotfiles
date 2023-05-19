@@ -128,3 +128,5 @@ fi
 
 # Add yarn to path for globally installed yarn packages
 export PATH="$(yarn global bin):$PATH"
+
+complete -C /usr/bin/terraform terraform
