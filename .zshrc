@@ -176,3 +176,7 @@ export PATH="/home/fabio/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
 export PATH="$PATH:/home/fabio/.foundry/bin"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+

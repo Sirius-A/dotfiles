@@ -55,8 +55,8 @@ require("lazy").setup({
    'rafcamlet/coc-nvim-lua',
    'arecarn/vim-spell-utils',      -- Keybinds for spellchecker
   ({ "iamcco/markdown-preview.nvim", build = "cd app && npm install", init = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, }),
-   'ferrine/md-img-paste.vim',
    'bdauria/angular-cli.vim',
+   'ekickx/clipboard-image.nvim',
    {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
