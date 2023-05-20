@@ -1,27 +1,14 @@
--- Install lazy.nvim
--- https://github.com/folke/lazy.nvim#-installation
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
+return {
   'tpope/vim-fugitive', -- Git commands in nvim
-  'tpope/vim-surround',
+  'kylechui/nvim-surround', -- nvim surround
   'tpope/vim-commentary', -- Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
   'tpope/vim-repeat',
   'simeji/winresizer', -- Resize window mode via CTRL + e
   'wellle/targets.vim', -- Additional text objects (allows ci[ for example)
   'wsdjeg/vim-fetch', -- Make vim understand my-file:80:4 to jump to line 80
   'smithbm2316/centerpad.nvim', -- Center a buffer
+  { 'ggandor/leap.nvim', keys = 's'}, -- Jump navigation
+  { 'smjonas/live-command.nvim', event = 'CmdlineEnter' },
 
 
   -- Extensions
@@ -98,6 +85,5 @@ require("lazy").setup({
   },
 
   -- Icons for AAALLL THE THINGS!! (should be loaded at the end)
-  -- use 'ryanoasis/vim-devicons'
   'kyazdani42/nvim-web-devicons',
-})
+}
