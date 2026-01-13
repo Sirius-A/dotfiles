@@ -1,6 +1,5 @@
 return {
   'tpope/vim-fugitive', -- Git commands in nvim
-  'kylechui/nvim-surround', -- nvim surround
   'tpope/vim-commentary', -- Comment stuff out using `gc` -  https://github.com/tpope/vim-commentary
   'tpope/vim-repeat',
   'simeji/winresizer', -- Resize window mode via CTRL + e
@@ -9,6 +8,16 @@ return {
   'smithbm2316/centerpad.nvim', -- Center a buffer
   { 'ggandor/leap.nvim', keys = 's'}, -- Jump navigation
   { 'smjonas/live-command.nvim', event = 'CmdlineEnter' },
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+          })
+    end
+  },
 
 
   -- Extensions
@@ -64,25 +73,38 @@ return {
     end,
   },
   'lervag/vimtex',
-
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-  --Highlight, edit, and navigate code using a fast incremental parsing library
-  {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  },
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      {"nvim-lua/plenary.nvim"},
-      {"nvim-treesitter/nvim-treesitter"}
-    }
-  },
+  -- { -- Highlight, edit, and navigate code
+  --   'nvim-treesitter/nvim-treesitter',
+  --   build = ':TSUpdate',
+  --   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+  --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+  --   opts = {
+  --     ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+  --     -- Autoinstall languages that are not installed
+  --     auto_install = true,
+  --     highlight = {
+  --       enable = true,
+  --       -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+  --       --  If you are experiencing weird indenting issues, add the language to
+  --       --  the list of additional_vim_regex_highlighting and disabled languages for indent.
+  --       additional_vim_regex_highlighting = { 'ruby' },
+  --     },
+  --     indent = { enable = true, disable = { 'ruby' } },
+  --   },
+  --   -- There are additional nvim-treesitter modules that you can use to interact
+  --   -- with nvim-treesitter. You should go explore a few and see what interests you:
+  --   --
+  --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+  --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+  --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  -- },
+  -- {
+  --   "ThePrimeagen/refactoring.nvim",
+  --   dependencies = {
+  --     {"nvim-lua/plenary.nvim"},
+  --     {"nvim-treesitter/nvim-treesitter"}
+  --   }
+  -- },
 
   -- Icons for AAALLL THE THINGS!! (should be loaded at the end)
   'kyazdani42/nvim-web-devicons',
