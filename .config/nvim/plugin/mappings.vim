@@ -3,7 +3,7 @@
 "-------------------------------------------------------------------------------
 " j and k move visual line
 nnoremap gj j
-nnoremap gj j
+nnoremap gk k
 nnoremap j gj
 nnoremap k gk
 
