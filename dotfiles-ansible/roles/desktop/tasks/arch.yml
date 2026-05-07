@@ -7,7 +7,6 @@
       - nitrogen
       - picom
       - flameshot
-      - termite
       - pulseaudio
       - rclone
       - kitty
