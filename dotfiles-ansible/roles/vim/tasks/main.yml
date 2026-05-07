@@ -11,15 +11,16 @@
     mode: 0o700
     owner: "{{ neovim_user_id }}"
 
-- name: Install Packer.nvim on system
+- name: Install lazy.nvim plugin manager
   ansible.builtin.git:
-    repo: 'https://github.com/wbthomason/packer.nvim'
-    dest: "{{ neovim_user_dir }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    repo: 'https://github.com/folke/lazy.nvim.git'
+    dest: "{{ neovim_user_dir }}/.local/share/nvim/lazy/lazy.nvim"
     clone: yes
     update: yes
     depth: 1
+    version: stable
 
-- name: Install plugins via Packer
-  command: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+- name: Install plugins via lazy.nvim
+  command: nvim --headless "+Lazy! sync" +qa
   ignore_errors: true
 
