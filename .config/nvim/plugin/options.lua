@@ -2,7 +2,7 @@
 vim.wo.number = true
 vim.o.mouse = 'a' --Enable mouse mode
 
-vim.opt.undofile = true  --Save undo history
+vim.opt.undofile = vim.fn.expand('$USER') ~= 'root'  -- don't create root-owned undo files
 
 --Case insensitive searching UNLESS /C or capital in search
 vim.opt.ignorecase = true
