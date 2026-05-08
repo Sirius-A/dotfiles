@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 unsetopt autocd beep
@@ -30,9 +30,6 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
 
-autoload -Uz compinit
-compinit
-
 #------------------------------------------------------------------------------
 #                               Options
 #------------------------------------------------------------------------------
@@ -40,12 +37,10 @@ compinit
 setopt globdots
 setopt autoparamslash       # Tab completing directory appends a slash
 setopt correct              # Command auto-correction
-setopt correctall           # Argument auto-correction
 setopt interactivecomments  # allow comments, even in interactive shells
 setopt appendhistory        # Append history to the history file (no overwriting)
 # setopt inc_append_history   # Appends every command to the history file once it is executed
 # setopt share_history        # Reloads the history whenever you use it
-setopt HIST_IGNORE_DUPS     # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate.
 
 export EDITOR='nvim'
@@ -111,8 +106,7 @@ autoload -Uz _zinit
 zinit light-mode for \
     zdharma-continuum/zinit-annex-readurl \
     zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+    zdharma-continuum/zinit-annex-patch-dl
 # End of Zinit's installer chunk
 
 # Zinit plugins
@@ -129,6 +123,12 @@ zinit as"depth=1" for \
   light-mode romkatv/powerlevel10k
 
 zinit pack"binary+keys" for fzf
+
+# zsh-syntax-highlighting must be loaded last
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Initialise completions after all plugins have registered their compdef calls
+autoload -Uz compinit && compinit -C
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -174,7 +174,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # mise
 eval "$(~/.local/bin/mise activate zsh)"
 
-export PATH="$PATH:/home/fabio/.foundry/bin"
+export PATH="$PATH:$HOME/.foundry/bin"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
