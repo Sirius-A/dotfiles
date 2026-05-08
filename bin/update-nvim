@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+INSTALL_DIR="/opt"
+TARBALL="nvim-linux-x86_64.tar.gz"
+NVIM_DIR="$INSTALL_DIR/nvim-linux-x86_64"
+
+current_version() {
+  if command -v nvim &>/dev/null; then
+    nvim --version | head -1 | awk '{print $2}'
+  else
+    echo "none"
+  fi
+}
+
+latest_version() {
+  curl -sf https://api.github.com/repos/neovim/neovim/releases/latest \
+    | jq -r '.tag_name'
+}
+
+CURRENT=$(current_version)
+LATEST=$(latest_version)
+
+echo "Current: $CURRENT"
+echo "Latest:  $LATEST"
+
+if [[ "$CURRENT" == "$LATEST" ]]; then
+  echo "Already up to date."
+  exit 0
+fi
+
+echo "Updating $CURRENT → $LATEST ..."
+
+TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
+
+curl -L --progress-bar \
+  "https://github.com/neovim/neovim/releases/download/$LATEST/$TARBALL" \
+  -o "$TMPDIR/$TARBALL"
+
+sudo rm -rf "$NVIM_DIR"
+sudo tar -C "$INSTALL_DIR" -xzf "$TMPDIR/$TARBALL"
+
+echo "Done. $(nvim --version | head -1)"
